@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImpactoLOCAL - Registrar Usuario</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body">
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-area">
+                <i class="fa-solid fa-sun logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-title">ImpactoLOCAL</span>
+                    <span class="logo-subtitle">PERÚ: ACCIÓN & CONFIANZA</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i> Principal</a>
+                <a href="descubre.html" class="nav-item"><i class="fa-solid fa-compass"></i> Descubre</a>
+                <a href="solicitudes.html" class="nav-item"><i class="fa-solid fa-file-lines"></i> Solicitudes</a>
+            </nav>
+            <div class="header-actions">
+                <a href="index.html" class="btn-pill">Volver</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header-box">
+                <h2>Crear Cuenta</h2>
+                <p>Únete a la red de micro-voluntariado y transparencia</p>
+            </div>
+            <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='descubre.html';">
+                <div class="form-field">
+                    <label>Nombre Completo</label>
+                    <input type="text" placeholder="Nombres y Apellidos" required>
+                </div>
+                <div class="form-field">
+                    <label>Correo Electrónico</label>
+                    <input type="email" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+                <div class="form-field">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit-form">Registrarse</button>
+            </form>
+            <div class="auth-switch">
+                <span>¿Ya tienes una cuenta?</span> <a href="iniciar-sesion.html">Inicia Sesión</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

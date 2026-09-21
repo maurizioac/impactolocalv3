@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#f8faf6]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpactoLOCAL - Administradores | Acceso</title>
+<!-- Google Fonts: Inter & Noto Serif -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Estilos propios del sitio -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              DEFAULT: '#1e5128',
+              hover: '#174020',
+              light: '#e8efe9',
+              dark: '#14381b'
+            },
+            terracotta: {
+              DEFAULT: '#e85d04',
+              hover: '#cf5203',
+              subtle: '#fff3eb'
+            },
+            surface: {
+              DEFAULT: '#f8faf6',
+              card: '#ffffff',
+              border: '#e4e7e1'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['"Noto Serif"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full flex flex-col font-sans text-slate-800 antialiased bg-[#f8faf6]">
+<!-- BEGIN: MainHeader -->
+<header class="w-full bg-white border-b border-[#e5e9e2] sticky top-0 z-50 shadow-sm" data-purpose="primary-header">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Left: Branding & Subtitle -->
+<a href="index.html" class="flex items-center space-x-3.5 brand-link" data-purpose="brand-container">
+<!-- Green Icon Box with Sun Symbol -->
+<div aria-hidden="true" class="w-12 h-12 bg-[#1e5128] rounded-xl flex items-center justify-center text-[#9ed36a] shadow-inner shrink-0">
+<svg class="w-6 h-6 text-[#d2f39c]" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Text Logo Stack -->
+<div class="flex flex-col">
+<div class="flex items-baseline space-x-1.5 leading-tight">
+<span class="text-2xl font-bold text-[#0f2814] tracking-tight">Impacto<span class="text-[#1e5128]">LOCAL</span></span>
+<span class="text-xl font-normal text-slate-400 select-none">–</span>
+<span class="text-xl font-medium text-slate-700">Administradores</span>
+</div>
+<span class="text-[9px] font-bold uppercase tracking-[0.24em] text-[#e85d04] mt-0.5">
+              PERÚ • ACCIÓN &amp; CONFIANZA
+            </span>
+</div>
+</a>
+<!-- Right: Super Admin Profile & Status -->
+<div class="flex items-center space-x-4" data-purpose="user-profile-header">
+<div class="text-right flex flex-col items-end">
+<span class="text-sm font-semibold text-slate-800 leading-snug">Super Admin Sistema</span>
+<div class="inline-flex items-center gap-1.5 mt-0.5 px-2.5 py-0.5 rounded-md bg-[#eafaf1] border border-[#a6e9c4] text-[#137a43] text-xs font-medium">
+<span class="w-2 h-2 rounded-full bg-[#1e5128] animate-pulse"></span>
+              Rol Moderación Nacional
+            </div>
+</div>
+<!-- User Avatar with Green Indicator dot -->
+<div class="relative">
+<div class="w-11 h-11 rounded-full border-2 border-slate-200 bg-slate-50 flex items-center justify-center text-slate-500 shadow-sm hover:border-[#1e5128] transition-colors cursor-pointer">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#1e5128] border-2 border-white ring-1 ring-white" title="Conectado"></span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: Navigation & Sub-Bar (Wireframe https://lh3.googleusercontent.com/aida-public/AB6AXuBHfWpGnWWgI-eRXg7VdwT-CP1tal9hSIrtgOAr_kr3Ghfni1ilIugLNfD6kTFSAkA1rqNcvX9VOZeUIFMl_tuJFL8xCm4JWI7bCH_tcccHRW3Kph8Grps60KNsosoYOttirhQo5FPgGeAZbJ2wOyZgp-Wzy9L9aXHDsPrys8Y1X1hLMHZcMuYeNd5i6OKvdG4akWQNYWSZlJOSvdPptB1MCcCdxy3TMbx_i97ONtS-Ur_dLFPlRK8AXl1uY5cMvG0Pwg alignment) -->
+<section class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2" data-purpose="top-action-bar">
+<div class="flex items-center justify-between">
+<!-- Back Button as requested in Wireframe -->
+<a class="inline-flex items-center space-x-2 px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium transition shadow-sm hover:text-[#1e5128]" href="#">
+<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Regresar</span>
+</a>
+<!-- Right Indicator / Pill: 'Administradores' -->
+<div class="inline-flex items-center px-4 py-1.5 rounded-full border border-slate-200 bg-white text-xs font-semibold text-slate-600 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-[#e85d04] mr-2"></span>
+        Administradores &amp; Organizaciones
+      </div>
+</div>
+</section>
+<!-- END: Navigation & Sub-Bar -->
+<!-- BEGIN: MainContent (Wireframe Centered Authentication Choice) -->
+<main class="flex-grow flex items-center justify-center px-4 py-10" data-purpose="main-selection-area">
+<div class="w-full max-w-lg">
+<!-- Center Selection Card according to Wireframe IMAGE_26 -->
+<div class="bg-white rounded-2xl border border-[#e2e7df] shadow-md hover:shadow-lg transition-shadow duration-300 p-8 sm:p-10 flex flex-col items-center">
+<!-- Big User Silhouette Circle Icon -->
+<div class="w-24 h-24 rounded-full border-[3px] border-slate-800 flex items-center justify-center text-slate-800 mb-8 bg-slate-50 shadow-inner" data-purpose="user-icon-circle">
+<svg class="w-13 h-13 w-14 h-14" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h1 class="text-xl font-semibold text-slate-800 mb-1 text-center font-serif">Panel de Control &amp; Moderación</h1>
+<p class="text-xs text-slate-500 mb-8 text-center max-w-xs">Selecciona la modalidad para acceder a las herramientas administrativas o dar de alta tu organización.</p>
+<!-- Twin Choice Selector: "Iniciar Sesión | Regístrate" -->
+<div class="w-full border border-slate-200 rounded-xl overflow-hidden shadow-sm grid grid-cols-2 divide-x divide-slate-200 bg-white" data-purpose="mode-toggle-selector">
+<!-- Iniciar Sesión Option -->
+<a class="action-choice group p-6 flex flex-col items-center justify-center text-center focus:outline-none focus:bg-emerald-50/50" href="administradores-iniciar-sesion.html">
+<span class="text-base sm:text-lg font-bold text-slate-800 group-hover:text-[#1e5128] transition-colors">
+              Iniciar Sesión
+            </span>
+<span class="mt-1 text-[11px] text-slate-500 font-normal">
+              Acceso institucional y administradores
+            </span>
+<span class="mt-3 inline-flex items-center text-xs font-semibold text-[#1e5128] group-hover:underline">
+              Ingresar →
+            </span>
+</a>
+<!-- Regístrate Option -->
+<a class="action-choice group p-6 flex flex-col items-center justify-center text-center focus:outline-none focus:bg-orange-50/40" href="administradores-registrar.html">
+<span class="text-base sm:text-lg font-bold text-slate-800 group-hover:text-[#e85d04] transition-colors">
+              Regístrate
+            </span>
+<span class="mt-1 text-[11px] text-slate-500 font-normal">
+              Solicitud para nuevas ONGs o municipios
+            </span>
+<span class="mt-3 inline-flex items-center text-xs font-semibold text-[#e85d04] group-hover:underline">
+              Crear cuenta →
+            </span>
+</a>
+</div>
+<!-- Security / Help note below card actions -->
+<div class="mt-8 flex items-center justify-center space-x-2 text-slate-400 text-xs text-center">
+<svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-slate-500">Acceso cifrado y verificado por Plataforma de Gobierno Digital</span>
+</div>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: InstitutionalFooter -->
+<footer class="w-full bg-white border-t border-slate-200 py-5 mt-auto" data-purpose="institutional-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<p class="text-xs sm:text-sm text-slate-600 font-medium">
+        ImpactoLOCAL © 2026 • <a href="administradores.html" class="usmp-admin-link">USMP 2026 - II</a> • Conectando ciudadanos, proyectos y causas con transparencia y confianza
+      </p>
+<div class="mt-1.5 flex items-center justify-center space-x-4 text-xs text-slate-400">
+<a class="hover:text-slate-600 transition-colors" href="#">Términos de Servicio</a>
+<span>•</span>
+<a class="hover:text-slate-600 transition-colors" href="#">Políticas de Privacidad</a>
+<span>•</span>
+<a class="hover:text-slate-600 transition-colors" href="#">Mesa de Ayuda</a>
+</div>
+</div>
+</footer>
+<!-- END: InstitutionalFooter -->
+</body></html>

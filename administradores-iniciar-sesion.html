@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#f8faf6]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpactoLOCAL - Iniciar Sesión Administradores</title>
+<!-- Google Fonts: Inter & Noto Serif -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#1e5128',
+              dark: '#163d1e',
+              light: '#2a6f37',
+              accent: '#d97706',
+              bg: '#f8faf6',
+              muted: '#f3f4f0',
+              border: '#e2e8f0',
+            }
+          },
+          fontFamily: {
+            serif: ['"Noto Serif"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Estilos propios del sitio -->
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="admin-auth-body min-h-screen flex flex-col justify-between text-slate-800 antialiased selection:bg-[#1e5128]/10 selection:text-[#1e5128]">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-[0_1px_3px_rgba(0,0,0,0.03)]" data-purpose="top-navigation-bar">
+<!-- Top Brand Row -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Left: Brand Logo & Title -->
+<a href="index.html" class="flex items-center space-x-3.5 brand-link" data-purpose="brand-identity">
+<div class="w-11 h-11 bg-[#1e5128] rounded-xl flex items-center justify-center shadow-sm text-amber-300">
+<!-- Sun / Local Impact Icon -->
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="4"></circle>
+<path d="M12 2v2"></path>
+<path d="M12 20v2"></path>
+<path d="m4.93 4.93 1.41 1.41"></path>
+<path d="m17.66 17.66 1.41 1.41"></path>
+<path d="M2 12h2"></path>
+<path d="M20 12h2"></path>
+<path d="m6.34 17.66-1.41 1.41"></path>
+<path d="m19.07 4.93-1.41 1.41"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-baseline space-x-2">
+<span class="text-2xl font-bold tracking-tight text-slate-900 font-sans">
+                Impacto<span class="text-[#1e5128] tracking-normal">LOCAL</span>
+</span>
+<span class="text-slate-400 font-normal text-lg">-</span>
+<span class="text-xl font-medium text-slate-700 tracking-tight">Administradores</span>
+</div>
+<p class="text-[9.5px] uppercase tracking-[0.24em] font-bold text-[#c25e24] -mt-0.5">
+              PERÚ • ACCIÓN &amp; CONFIANZA
+            </p>
+</div>
+</a>
+<!-- Right: Auth State & User Icon Indicator -->
+<div class="flex items-center space-x-6" data-purpose="header-auth-controls">
+<nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+<a class="text-[#1e5128] font-semibold flex items-center pb-0.5 border-b-2 border-[#1e5128]" href="administradores-iniciar-sesion.html">
+              Iniciar Sesión
+            </a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors" href="administradores-registrar.html">
+              Regístrate
+            </a>
+</nav>
+<div class="h-6 w-px bg-slate-200 hidden md:block"></div>
+<!-- Profile Badge Representation -->
+<div class="flex items-center space-x-2">
+<div class="relative">
+<div class="w-10 h-10 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-50 transition cursor-pointer">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#1e5128] border-2 border-white rounded-full"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Navigation Bar (Wireframe/Header alignment) -->
+<div class="border-t border-slate-100 bg-[#fbfcfb]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-11 text-sm font-medium text-slate-600">
+<a class="flex items-center space-x-1.5 hover:text-[#1e5128] transition-colors py-2.5" href="#">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Descubre</span>
+</a>
+<!-- Contador de Solicitudes: aumenta cuando se registra una nueva solicitud -->
+<div class="flex items-center space-x-2 text-slate-500" data-purpose="solicitudes-counter" title="Total de solicitudes recibidas">
+<svg class="w-4 h-4 text-[#1e5128]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span>Solicitudes:</span>
+<span class="bg-[#d95d1e] text-white text-xs font-semibold px-2 py-0.5 rounded-full text-[11px] leading-none" data-solicitudes-count>14</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-md" data-purpose="login-card-container">
+<!-- Card Container -->
+<div class="bg-white rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] border border-slate-200/80 p-8 sm:p-10 transition-all duration-300">
+<!-- User Circular Icon -->
+<div class="flex justify-center mb-6" data-purpose="user-avatar-indicator">
+<div class="w-20 h-20 rounded-full border-[3px] border-slate-700/80 flex items-center justify-center p-1 bg-slate-50/50 shadow-inner">
+<svg class="w-12 h-12 text-slate-700" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Section Heading / Tabs Header -->
+<div class="text-center mb-8">
+<h1 class="text-2xl font-bold text-slate-800 tracking-tight">Iniciar Sesión</h1>
+<p class="text-sm text-slate-500 mt-1">Panel Administrativo Central</p>
+</div>
+<!-- Form Element -->
+<form action="#" class="space-y-6" data-purpose="admin-login-form" method="POST">
+<!-- Username Field -->
+<div>
+<label class="block text-sm font-semibold text-slate-700 mb-2" for="usuario">
+              Usuario:
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-3.5 py-3 text-slate-800 bg-white border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e5128] focus:border-[#1e5128] transition duration-150 ease-in-out" id="usuario" name="usuario" placeholder="admin_central" required="" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block text-sm font-semibold text-slate-700" for="password">
+                Contraseña:
+              </label>
+</div>
+<div class="relative rounded-lg shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 text-slate-800 bg-white border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e5128] focus:border-[#1e5128] transition duration-150 ease-in-out" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+<!-- Toggle Visibility Button -->
+<button aria-label="Mostrar contraseña" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none" data-purpose="password-visibility-toggle" id="toggle-password" type="button">
+<svg class="w-5 h-5" fill="none" id="eye-icon" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Secondary Options -->
+<div class="flex items-center justify-between text-sm">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input class="w-4 h-4 rounded text-[#1e5128] focus:ring-[#1e5128] border-slate-300" type="checkbox"/>
+<span class="text-slate-600 text-xs sm:text-sm">Recordarme</span>
+</label>
+<a class="text-xs sm:text-sm font-medium text-[#1e5128] hover:text-[#163d1e] hover:underline" href="#">
+              ¿Olvidaste tu contraseña?
+            </a>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full py-3.5 px-4 rounded-lg bg-[#1e5128] text-white font-medium text-sm hover:bg-[#163d1e] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1e5128] shadow-sm transition-all duration-150" type="submit">
+              Iniciar Sesión
+            </button>
+</div>
+</form>
+<!-- Access Request Alternative -->
+<div class="mt-8 pt-6 border-t border-slate-100 text-center">
+<p class="text-xs sm:text-sm text-slate-500">
+            ¿No posees credenciales asignadas?
+            <a class="font-semibold text-[#1e5128] hover:underline hover:text-[#163d1e] ml-1" href="#">
+              Solicitar acceso de administrador
+            </a>
+</p>
+</div>
+</div>
+<!-- Quick Institutional Help Note -->
+<div class="mt-6 text-center">
+<p class="text-xs text-slate-400 flex items-center justify-center space-x-1">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Conexión cifrada de extremo a extremo - Red Segura USMP</span>
+</p>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="bg-white border-t border-slate-200 py-6" data-purpose="page-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-slate-700">ImpactoLOCAL</span>
+<span>© 2026</span>
+<span>•</span>
+<span class="font-medium text-slate-600"><a href="administradores.html" class="usmp-admin-link">USMP 2026 - II</a></span>
+</div>
+<div class="flex items-center space-x-6">
+<a class="hover:text-slate-800 transition-colors" href="#">Términos del Servicio</a>
+<a class="hover:text-slate-800 transition-colors" href="#">Política de Privacidad</a>
+<a class="hover:text-slate-800 transition-colors" href="#">Soporte Técnico</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- Password Visibility Toggle Handler -->
+<script data-purpose="toggle-password-visibility">
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('password');
+
+      if (toggleBtn && passwordInput) {
+        toggleBtn.addEventListener('click', () => {
+          const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordInput.setAttribute('type', type);
+          toggleBtn.classList.toggle('text-[#1e5128]');
+        });
+      }
+    });
+  </script>
+<script src="js/solicitudes-counter.js"></script>
+</body></html>

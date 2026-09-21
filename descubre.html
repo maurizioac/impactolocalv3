@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImpactoLOCAL - Descubre y Directorio de ONG's</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="il-body">
+<header class="il-header">
+<div class="il-header-inner">
+<a href="index.html" class="il-logo">
+<span class="il-logo-icon"><i class="fa-solid fa-sun"></i></span>
+<span class="il-logo-text">
+<span class="il-logo-title">ImpactoLOCAL</span>
+<span class="il-logo-sub">PERÚ &bull; ACCIÓN &amp; CONFIANZA</span>
+</span>
+</a>
+<nav class="il-nav">
+<a href="index.html" class="il-nav-link"><i class="fa-solid fa-house"></i> Principal</a>
+<a href="descubre.html" class="il-nav-link is-active"><i class="fa-solid fa-magnifying-glass"></i> Descubre</a>
+<a href="solicitudes.html" class="il-nav-link">Solicitudes <i class="fa-regular fa-circle-question"></i></a>
+</nav>
+<div class="il-header-actions">
+<a href="iniciar-sesion.html" class="il-link-muted">Iniciar Sesión</a>
+<a href="registrar.html" class="il-btn-outline">Regístrate</a>
+<a href="iniciar-sesion.html" class="il-avatar" aria-label="Cuenta"><i class="fa-solid fa-user"></i></a>
+</div>
+<button class="il-nav-toggle" id="ilNavToggle" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+</div>
+</header>
+
+<main class="il-main">
+<section class="il-hero">
+<h1>Descubre Iniciativas que Transforman el Perú</h1>
+<p class="il-hero-sub">Encuentra proyectos comunitarios, ONGs y voluntariados según tus intereses, ubicación y disponibilidad.</p>
+
+<form class="il-search-hero" onsubmit="return false;">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" id="ilHeroSearch" placeholder="¿Qué causa deseas apoyar? Ej: juguetes, biberones, reforestación...">
+<button type="submit" class="il-search-submit" aria-label="Buscar"><i class="fa-solid fa-plus"></i></button>
+</form>
+<p class="il-hero-search-hint">Busca por causa o tipo de ayuda (por ejemplo: <em>"juguetes"</em>, <em>"biberones"</em>, <em>"reforestación"</em>) y te mostraremos las ONGs y voluntariados relacionados.</p>
+
+<p class="il-filters-label">Filtros de exploración rápida</p>
+
+<div class="il-filters-grid">
+<button type="button" class="il-filter-card" data-filter="categoria">
+<span class="il-filter-icon il-filter-icon--orange"><i class="fa-solid fa-bullseye"></i></span>
+<span class="il-filter-text">
+<span class="il-filter-label">Categoría</span>
+<span class="il-filter-value">Causa / Objetivo</span>
+</span>
+<i class="fa-solid fa-chevron-down il-filter-chevron"></i>
+</button>
+
+<button type="button" class="il-filter-card" data-filter="modalidad">
+<span class="il-filter-icon il-filter-icon--green"><i class="fa-solid fa-hand-holding-heart"></i></span>
+<span class="il-filter-text">
+<span class="il-filter-label">Modalidad</span>
+<span class="il-filter-value">Tipo de ayuda</span>
+</span>
+<i class="fa-solid fa-chevron-down il-filter-chevron"></i>
+</button>
+
+<button type="button" class="il-filter-card" data-filter="territorio">
+<span class="il-filter-icon il-filter-icon--blue"><i class="fa-solid fa-location-dot"></i></span>
+<span class="il-filter-text">
+<span class="il-filter-label">Territorio</span>
+<span class="il-filter-value">Ubicación (Región / Prov / Dist)</span>
+</span>
+<i class="fa-solid fa-chevron-down il-filter-chevron"></i>
+</button>
+
+<button type="button" class="il-filter-card" data-filter="compromiso">
+<span class="il-filter-icon il-filter-icon--purple"><i class="fa-solid fa-clock"></i></span>
+<span class="il-filter-text">
+<span class="il-filter-label">Compromiso</span>
+<span class="il-filter-value">Disponibilidad de Tiempo</span>
+</span>
+<i class="fa-solid fa-chevron-down il-filter-chevron"></i>
+</button>
+</div>
+
+<div class="il-assistant-banner">
+<div class="il-assistant-content">
+<span class="il-assistant-badge"><span class="il-dot"></span> Asistente Comunitario Activo</span>
+<h2>¿Pregunta lo que quieras, Víctor Daniel?</h2>
+<p>Podemos recomendarte causas locales verificadas en base a tu perfil e impacto deseado.</p>
+</div>
+<button type="button" class="il-btn-white" id="ilConsultarBtn">Consultar ahora <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+</section>
+
+<section class="il-directory" id="directorio">
+<form class="il-search-compact" onsubmit="return false;">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" id="ilDirectorySearch" placeholder="Buscar organización por su nombre...">
+<button type="submit" class="il-search-submit-sm" aria-label="Buscar"><i class="fa-solid fa-plus"></i></button>
+</form>
+
+<div class="il-active-filters" id="ilActiveFilters">
+<span class="il-active-filters-label">Filtros activos:</span>
+<span class="il-chip il-chip--green">Causa: Infancia y Ambiente</span>
+<span class="il-chip il-chip--gray">Ubicación: Perú (Multiregional)</span>
+<span class="il-chip il-chip--orange">Disponibilidad: Fines de semana</span>
+</div>
+
+<div class="il-search-note" id="ilSearchNote" hidden>
+<span id="ilSearchNoteText"></span>
+<button type="button" id="ilSearchNoteClear" class="il-search-note-clear">Quitar búsqueda <i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<article class="il-featured-card">
+<span class="il-featured-tag">Destacada del mes</span>
+<div class="il-featured-grid">
+<div class="il-featured-content">
+<p class="il-eyebrow"><span class="il-dot"></span> INICIATIVA PRIORITARIA &bull; RED NACIONAL MIMP</p>
+<h3>Red Kallpa: Transformando Comunidades Rurales</h3>
+<p class="il-featured-desc">Consorcio líder dedicado al fortalecimiento de capacidades pedagógicas, empoderamiento de familias vulnerables y desarrollo integral de la niñez en las zonas andinas de Cusco, Ayacucho y Puno con más de 12 años de trayectoria auditada.</p>
+<div class="il-card-actions">
+<a href="solicitudes.html" class="il-btn-solid">Explorar Organización y Programas</a>
+<a href="#" class="il-btn-outline-dark">Ver Métricas de Impacto</a>
+</div>
+</div>
+<div class="il-featured-image" style="background-image:url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</div>
+</article>
+
+<div class="il-directory-heading">
+<h3 id="ilOrgCount">Organizaciones Registradas y Verificadas (5)</h3>
+<span class="il-sort-label">Ordenado por relevancia social</span>
+</div>
+
+<div class="il-org-list" id="ilOrgList">
+<article class="il-org-card" data-categorias="educación educacion infancia niñez ninez tecnología tecnologia bibliotecas talleres vocacionales aulas digitales lima junín junin">
+<div class="il-org-content">
+<div class="il-org-tags">
+<span class="il-chip il-chip--green-solid">Verificada PUCP &amp; MIMP</span>
+<span class="il-org-meta">&bull; Lima &amp; Selva Central</span>
+</div>
+<h3>Kallpa Social - Educación y Futuro</h3>
+<p>Organización no gubernamental sin fines de lucro enfocada en erradicar la brecha formativa escolar y digital. Desarrollamos bibliotecas itinerantes, equipamiento de aulas solares y talleres vocacionales sostenibles para adolescentes en Lima Este y comunidades nativas de Junín.</p>
+<div class="il-card-actions">
+<a href="organizacion.html" class="il-btn-solid">Ver Perfil Completo</a>
+<a href="#" class="il-btn-outline-dark">Contactar Organización</a>
+</div>
+</div>
+<div class="il-org-image" style="background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</article>
+
+<article class="il-org-card" data-categorias="medio ambiente reforestación reforestacion ecología ecologia cuencas fluviales bio-negocios comunidades originarias madre de dios san martín san martin naturaleza">
+<div class="il-org-content">
+<div class="il-org-tags">
+<span class="il-chip il-chip--green-solid">Certificación Ambiental 2026</span>
+<span class="il-org-meta">&bull; Madre de Dios &amp; San Martín</span>
+</div>
+<h3>Conservación Viva Perú</h3>
+<p>Impulsamos proyectos de reforestación participativa con especies autóctonas, preservación de cuencas fluviales y bio-negocios regenerativos con comunidades originarias. Garantizamos veeduría civil, medición satelital de hectáreas restauradas y transparencia activa en donaciones.</p>
+<div class="il-card-actions">
+<a href="organizacion.html" class="il-btn-solid">Ver Perfil Completo</a>
+<a href="#" class="il-btn-outline-dark">Sumarse al Voluntariado</a>
+</div>
+</div>
+<div class="il-org-image" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</article>
+
+<article class="il-org-card" data-categorias="comedores populares ollas comunes alimentación alimentacion donaciones transparencia auditoría auditoria nacional">
+<div class="il-org-content">
+<div class="il-org-tags">
+<span class="il-chip il-chip--orange-solid">Auditoría Ciudadana</span>
+<span class="il-org-meta">&bull; Red Nacional</span>
+</div>
+<h3>Manos Limpias &amp; Transparentes</h3>
+<p>Plataforma cívica encargada de monitorear la correcta asignación de comedores populares, ollas comunes y donaciones alimentarias. Brindamos capacitación en gestión contable vecinal y soporte legal gratuito para dirigentes comunitarias en todo el territorio nacional.</p>
+<div class="il-card-actions">
+<a href="organizacion.html" class="il-btn-solid">Ver Perfil Completo</a>
+<a href="#" class="il-btn-outline-dark">Ver Reportes Públicos</a>
+</div>
+</div>
+<div class="il-org-image" style="background-image:url('https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</article>
+
+<article class="il-org-card" data-categorias="juguetes juguete recolección de juguetes recoleccion de juguetes navidad niñez ninez recreación recreacion donación de juguetes donacion de juguetes voluntariado infantil regalos">
+<div class="il-org-content">
+<div class="il-org-tags">
+<span class="il-chip il-chip--orange-solid">Voluntariado Navideño</span>
+<span class="il-org-meta">&bull; Lima &amp; Callao</span>
+</div>
+<h3>Sonrisas que Abrigan - Recolección de Juguetes</h3>
+<p>Red de voluntariado dedicada a recolectar y acondicionar juguetes en buen estado para entregarlos en Navidad y fechas festivas a niñas y niños en situación de vulnerabilidad de Lima y Callao. También organizamos campañas de recreación y talleres lúdicos en asentamientos humanos.</p>
+<div class="il-card-actions">
+<a href="organizacion.html" class="il-btn-solid">Ver Perfil Completo</a>
+<a href="#" class="il-btn-outline-dark">Donar Juguetes</a>
+</div>
+</div>
+<div class="il-org-image" style="background-image:url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</article>
+
+<article class="il-org-card" data-categorias="biberones biberón leche maternizada pañales panales lactancia primera infancia nutrición infantil nutricion infantil bebés bebes recién nacidos recien nacidos">
+<div class="il-org-content">
+<div class="il-org-tags">
+<span class="il-chip il-chip--green-solid">Certificación MINSA</span>
+<span class="il-org-meta">&bull; Arequipa &amp; Puno</span>
+</div>
+<h3>Primeros Pasos - Biberones y Nutrición Infantil</h3>
+<p>ONG enfocada en la primera infancia: recolectamos y entregamos biberones, leche maternizada y pañales para bebés y madres gestantes de escasos recursos, además de brindar talleres de lactancia y nutrición en centros de salud de Arequipa y Puno.</p>
+<div class="il-card-actions">
+<a href="organizacion.html" class="il-btn-solid">Ver Perfil Completo</a>
+<a href="#" class="il-btn-outline-dark">Donar Insumos</a>
+</div>
+</div>
+<div class="il-org-image" style="background-image:url('https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&amp;fit=crop&amp;w=900&amp;q=80')"></div>
+</article>
+</div>
+
+<p class="il-empty-state" id="ilEmptyState" hidden><i class="fa-regular fa-face-frown"></i> No encontramos organizaciones que coincidan con tu búsqueda. Intenta con otra palabra clave.</p>
+
+<p class="il-showing-label" id="ilShowingLabel">Mostrando 5 de 5 iniciativas registradas en el ecosistema nacional</p>
+</section>
+</main>
+
+<footer class="il-footer">
+<div class="il-footer-inner">
+<span class="il-footer-refs"><span class="il-dot"></span> Referencias oficiales (MIMP y PUCP)</span>
+<span class="il-footer-center">ImpactoLOCAL &copy; 2026 &bull; <a href="administradores.html" class="usmp-admin-link">USMP 2026 - II</a></span>
+<span class="il-footer-links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="descubre.html">Directorio de ONGs</a></span>
+</div>
+</footer>
+
+<script src="js/descubre.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImpactoLOCAL - Solicitudes de Ayuda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="il-body">
+<header class="il-header">
+<div class="il-header-inner">
+<a href="index.html" class="il-logo">
+<span class="il-logo-icon"><i class="fa-solid fa-sun"></i></span>
+<span class="il-logo-text">
+<span class="il-logo-title">ImpactoLOCAL</span>
+<span class="il-logo-sub">PERÚ &bull; ACCIÓN &amp; CONFIANZA</span>
+</span>
+</a>
+<nav class="il-nav">
+<a href="index.html" class="il-nav-link"><i class="fa-solid fa-house"></i> Principal</a>
+<a href="descubre.html" class="il-nav-link">Descubre</a>
+<a href="solicitudes.html" class="il-nav-link is-active">Solicitudes <i class="fa-regular fa-circle-question"></i></a>
+</nav>
+<div class="il-header-actions">
+<a href="iniciar-sesion.html" class="il-link-muted">Iniciar Sesión</a>
+<a href="registrar.html" class="il-btn-outline">Regístrate</a>
+<a href="iniciar-sesion.html" class="il-avatar" aria-label="Cuenta"><i class="fa-solid fa-user"></i></a>
+</div>
+<button class="il-nav-toggle" id="ilNavToggle" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+</div>
+</header>
+
+<main class="il-main">
+<section class="il-solicitudes">
+<form class="il-search-compact" onsubmit="return false;">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" id="ilSolSearch" placeholder="¿A qué organización deseas ayudar?">
+<button type="submit" class="il-search-submit-sm" aria-label="Buscar"><i class="fa-solid fa-plus"></i></button>
+</form>
+
+<div class="il-solicitudes-heading">
+<h2>Últimas Solicitudes de Ayuda:</h2>
+<label class="il-toggle-check">
+<input type="checkbox" id="ilDescToggle" checked>
+<span class="il-toggle-box"><i class="fa-solid fa-check"></i></span>
+Según tu descripción
+</label>
+</div>
+
+<article class="il-urgent-card">
+<span class="il-urgent-tag"><i class="fa-solid fa-star"></i> Urgente / Prioritario</span>
+<div class="il-urgent-row">
+<div class="il-urgent-info">
+<h3>Kallpa Warmikuna <span class="il-urgent-sub">(Solicitud resumen: Kits de abrigo y cocina)</span></h3>
+<p><strong>Perfil de solicitante:</strong> Comité de Madres Ollas Comunes - Alto Trujillo &bull; <strong>Fecha:</strong> 24/05/2026</p>
+</div>
+<a href="#" class="il-btn-solid il-urgent-btn">Ver Expediente</a>
+</div>
+</article>
+
+<div class="il-request-list">
+<article class="il-request-card">
+<div class="il-request-content">
+<div class="il-request-title-row">
+<h3>Yachay Wasi Perú <span class="il-request-sub">(Campaña Útiles Escolares Cusco 2026)</span></h3>
+<span class="il-request-date">18/05/2026</span>
+</div>
+<p>Requerimos apoyo con kits de útiles escolares, mochilas impermeables y material didáctico bilingüe (quechua-español) para 180 niñas y niños de 5 comunidades altoandinas en Paucartambo. Los voluntarios participarán en jornadas de clasificación, entrega y dinámicas de lectura al aire libre durante las dos primeras semanas de junio.</p>
+<div class="il-request-footer">
+<div class="il-request-tags">
+<span class="il-chip il-chip--green-outline">Educación Rural</span>
+<span class="il-chip il-chip--orange-outline">Voluntariado presencial</span>
+</div>
+<div class="il-card-actions">
+<a href="#" class="il-btn-gray">Detalles</a>
+<a href="#" class="il-btn-solid">Postular como voluntario</a>
+</div>
+</div>
+</div>
+<div class="il-request-image" style="background-image:url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&amp;fit=crop&amp;w=900&amp;q=80')">
+<span class="il-image-tag">Paucartambo, Cusco</span>
+</div>
+</article>
+
+<article class="il-request-card">
+<div class="il-request-content">
+<div class="il-request-title-row">
+<h3>Defensores de Lomas de Lima <span class="il-request-sub">(Jornada de reforestación con Tara)</span></h3>
+<span class="il-request-date">15/05/2026</span>
+</div>
+<p>Buscamos 35 voluntarios comprometidos para la instalación de 120 plantones de tara y mantenimiento de atrapanieblas en el ecosistema de las Lomas de Amancaes. Se proporcionarán herramientas y guantes de protección. No se requiere experiencia previa, solo calzado adecuado para trekking y botellas reutilizables de agua.</p>
+<div class="il-request-footer">
+<div class="il-request-tags">
+<span class="il-chip il-chip--green-outline">Medio Ambiente</span>
+<span class="il-chip il-chip--blue-outline">Rímac, Lima</span>
+</div>
+<div class="il-card-actions">
+<a href="#" class="il-btn-gray">Detalles</a>
+<a href="#" class="il-btn-solid">Postular como voluntario</a>
+</div>
+</div>
+</div>
+<div class="il-request-image" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&amp;fit=crop&amp;w=900&amp;q=80')">
+<span class="il-image-tag">Lomas de Amancaes</span>
+</div>
+</article>
+
+<article class="il-request-card">
+<div class="il-request-content">
+<div class="il-request-title-row">
+<h3>Red Solidaria Manos Unidas <span class="il-request-sub">(Víveres secos &amp; Equipamiento de gas)</span></h3>
+<span class="il-request-date">18/05/2026</span>
+</div>
+<p>Urgencia de abastecimiento de sacos de arroz, legumbres y balones de gas doméstico para abastecer a 3 ollas autogestionadas en San Juan de Lurigancho que atienden a 230 adultos mayores y madres solteras. También requerimos apoyo logístico vehicular para el traslado de donaciones desde centros de acopio.</p>
+<div class="il-request-footer">
+<div class="il-request-tags">
+<span class="il-chip il-chip--orange-outline">Seguridad Alimentaria</span>
+<span class="il-chip il-chip--gray-outline">Donación y Transporte</span>
+</div>
+<div class="il-card-actions">
+<a href="#" class="il-btn-gray">Detalles</a>
+<a href="#" class="il-btn-orange-solid">Apoyar iniciativa</a>
+</div>
+</div>
+</div>
+<div class="il-request-image" style="background-image:url('https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&amp;fit=crop&amp;w=900&amp;q=80')">
+<span class="il-image-tag">S.J.L., Lima</span>
+</div>
+</article>
+</div>
+
+<div class="il-load-more-wrap">
+<button type="button" class="il-btn-loadmore" id="ilLoadMore">Cargar más solicitudes <i class="fa-solid fa-chevron-down"></i></button>
+</div>
+</section>
+</main>
+
+<footer class="il-footer il-footer-simple">
+<div class="il-footer-inner-center">
+<p>Referencias (MIMP y PUCP) &bull; <a href="administradores.html" class="usmp-admin-link">USMP 2026 - II</a></p>
+<p class="il-footer-muted">Plataforma ciudadana para el fortalecimiento del voluntariado y la acción solidaria en el Perú.</p>
+</div>
+</footer>
+
+<script src="js/solicitudes.js"></script>
+</body>
+</html>

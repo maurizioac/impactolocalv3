@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#f8faf6]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ImpactoLOCAL - Registro / Solicitud Institucional</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Serif:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#1e5128',
+              900: '#14381b',
+            },
+            accent: {
+              terracotta: '#e85d04',
+              sun: '#f59e0b',
+            },
+            surface: {
+              base: '#f8faf6',
+              card: '#ffffff',
+              border: '#e2e8f0',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Noto Serif"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Estilos propios del sitio -->
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="admin-register-body min-h-full flex flex-col bg-[#f8faf6] text-slate-800 antialiased selection:bg-[#1e5128]/10 selection:text-[#1e5128]">
+<!-- BEGIN: Header -->
+<header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Brand Logo & Platform Subtitle -->
+<a href="index.html" class="flex items-center space-x-3.5 brand-link" data-purpose="brand-identity">
+<div class="w-12 h-12 rounded-2xl bg-[#1e5128] flex items-center justify-center shadow-md shadow-[#1e5128]/20 flex-shrink-0">
+<!-- Sun/Impact Icon matching IMAGE_11 -->
+<svg class="w-6 h-6 text-amber-300 fill-current" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="4"></circle>
+<path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m14.14-14.14l-1.41 1.41" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<div class="flex items-baseline space-x-1.5">
+<span class="text-2xl font-extrabold text-slate-900 tracking-tight">Impacto<span class="text-[#1e5128]">LOCAL</span></span>
+<span class="text-slate-400 font-light text-xl">−</span>
+<span class="text-slate-700 font-semibold text-xl tracking-normal">Administradores</span>
+</div>
+<div class="text-[10.5px] uppercase tracking-[0.22em] font-bold text-[#e85d04] flex items-center space-x-1.5">
+<span>PERÚ</span>
+<span class="text-[8px] opacity-70">•</span>
+<span>ACCIÓN &amp; CONFIANZA</span>
+</div>
+</div>
+</a>
+<!-- Auth Navigation & User Profile Area -->
+<div class="flex items-center space-x-6" data-purpose="nav-actions">
+<nav class="hidden md:flex items-center space-x-6 font-medium text-sm">
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="administradores-iniciar-sesion.html">Iniciar Sesión</a>
+<a class="text-[#1e5128] font-bold border-b-2 border-[#1e5128] pb-1 transition-all" href="administradores-registrar.html">Regístrate</a>
+</nav>
+<!-- User Profile Indicator / Avatar Badge -->
+<div class="flex items-center pl-4 border-l border-slate-200 space-x-3">
+<div class="text-right hidden sm:block">
+<div class="text-xs font-semibold text-slate-900">Super Admin Sistema</div>
+<div class="inline-flex items-center px-2 py-0.5 mt-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-500"></span>
+                Rol Moderación Nacional
+              </div>
+</div>
+<div class="relative">
+<div class="w-11 h-11 rounded-full border-2 border-slate-200 bg-slate-100 flex items-center justify-center text-slate-500 shadow-inner">
+<i class="fa-regular fa-user text-xl"></i>
+</div>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#1e5128] border-2 border-white rounded-full"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-xl">
+<!-- Central Card matching Wireframe IMAGE_23 -->
+<div class="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200/90 overflow-hidden" data-purpose="registration-card">
+<!-- Entity Tabs Header -->
+<div class="grid grid-cols-2 border-b border-slate-200 bg-slate-50/50" data-purpose="entity-tabs">
+<!-- Active Tab: ONG's -->
+<button id="tab-btn-ong" class="py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] transition-all flex items-center justify-center space-x-2" type="button">
+<i class="fa-solid fa-users text-sm opacity-90"></i>
+<span class="tracking-wide">ONG's</span>
+</button>
+<!-- Secondary Tab: Organización benéfica -->
+<button id="tab-btn-benefica" class="py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 border-l border-slate-200 transition-all flex items-center justify-center space-x-2" type="button">
+<i class="fa-solid fa-hand-holding-heart text-sm opacity-80"></i>
+<span class="tracking-wide">Organización benéfica</span>
+</button>
+</div>
+<!-- Card Body -->
+<div class="p-8 sm:p-10">
+<!-- Central Icon from Wireframe -->
+<div class="flex flex-col items-center mb-8" data-purpose="avatar-representation">
+<div class="w-24 h-24 rounded-full border-[3px] border-slate-800/80 flex items-center justify-center text-slate-700 bg-white shadow-sm hover:scale-105 transition-transform duration-200">
+<i class="fa-regular fa-user text-5xl"></i>
+</div>
+<p id="panel-label" class="mt-3 text-xs font-medium text-slate-500 tracking-wide">SOLICITUD DE ONG</p>
+</div>
+<!-- Registration Form: ONG's -->
+<div id="panel-ong" data-purpose="panel-ong">
+<form action="#" class="space-y-6" data-purpose="entity-request-form" method="POST" onsubmit="event.preventDefault(); window.ImpactoLocalSolicitudes && window.ImpactoLocalSolicitudes.incrementar(); this.reset(); alert('Tu solicitud de ONG fue enviada y está en revisión.');">
+<!-- Usuario Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="username">
+                Usuario:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="username" name="username" placeholder="Ej. ong_esperanzaviva" required="" type="text"/>
+</div>
+</div>
+<!-- Correo Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="email">
+                Correo:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="email" name="email" placeholder="contacto@organizacion.org.pe" required="" type="email"/>
+</div>
+</div>
+<!-- Contraseña Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="password">
+                Contraseña:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Institutional Notice / Verification Note -->
+<div class="rounded-lg bg-emerald-50/70 border border-emerald-200/80 p-3.5 text-xs text-emerald-950 flex items-start space-x-2.5">
+<i class="fa-solid fa-circle-info text-emerald-700 mt-0.5 flex-shrink-0 text-sm"></i>
+<span>
+<strong>Aviso de Verificación:</strong> Todas las solicitudes son auditadas según lineamientos del <strong>MIMP</strong> e ImpactoLOCAL antes de habilitar los módulos de recepción benéfica.
+              </span>
+</div>
+<!-- Submit Action (Aligned to wireframe bottom right/accent button) -->
+<div class="flex justify-end pt-2">
+<button class="inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-bold text-white bg-[#1e5128] hover:bg-[#163c1d] active:scale-[0.98] shadow-md shadow-[#1e5128]/25 transition-all duration-150" type="submit">
+<span>Enviar solicitud</span>
+<i class="fa-solid fa-paper-plane ml-2.5 text-xs"></i>
+</button>
+</div>
+</form>
+</div>
+<!-- Registration Form: Organización benéfica -->
+<div id="panel-benefica" class="hidden" data-purpose="panel-benefica">
+<form action="#" class="space-y-6" data-purpose="entity-request-form-benefica" method="POST" onsubmit="event.preventDefault(); window.ImpactoLocalSolicitudes && window.ImpactoLocalSolicitudes.incrementar(); this.reset(); alert('Tu solicitud de organización benéfica fue enviada y está en revisión.');">
+<!-- Usuario Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="username-benefica">
+                Usuario:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="username-benefica" name="username-benefica" placeholder="Ej. fundacion_manosunidas" required="" type="text"/>
+</div>
+</div>
+<!-- Correo Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="email-benefica">
+                Correo:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="email-benefica" name="email-benefica" placeholder="contacto@fundacionbenefica.org.pe" required="" type="email"/>
+</div>
+</div>
+<!-- Contraseña Field -->
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="password-benefica">
+                Contraseña:
+              </label>
+<div class="relative rounded-lg shadow-sm">
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password-benefica" name="password-benefica" placeholder="••••••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Institutional Notice / Verification Note -->
+<div class="rounded-lg bg-emerald-50/70 border border-emerald-200/80 p-3.5 text-xs text-emerald-950 flex items-start space-x-2.5">
+<i class="fa-solid fa-circle-info text-emerald-700 mt-0.5 flex-shrink-0 text-sm"></i>
+<span>
+<strong>Aviso de Verificación:</strong> Todas las solicitudes son auditadas según lineamientos del <strong>MIMP</strong> e ImpactoLOCAL antes de habilitar los módulos de gestión de donaciones y beneficencia.
+              </span>
+</div>
+<!-- Submit Action -->
+<div class="flex justify-end pt-2">
+<button class="inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-bold text-white bg-[#1e5128] hover:bg-[#163c1d] active:scale-[0.98] shadow-md shadow-[#1e5128]/25 transition-all duration-150" type="submit">
+<span>Enviar solicitud</span>
+<i class="fa-solid fa-paper-plane ml-2.5 text-xs"></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Footer -->
+<footer class="bg-white border-t border-slate-200 py-6 text-xs text-slate-500">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+<div class="flex items-center space-x-2">
+<span class="font-bold text-slate-800">ImpactoLOCAL</span>
+<span>•</span>
+<span>Plataforma Oficial de Gestión Comunitaria</span>
+</div>
+<div class="text-center sm:text-right text-slate-500">
+        Marco de validación institucional con referencias oficiales <strong>(MIMP y PUCP) • <a href="administradores.html" class="usmp-admin-link">USMP 2026 - II</a></strong>.
+      </div>
+</div>
+</footer>
+<!-- END: Footer -->
+<!-- Entity Tabs Toggle: ONG's / Organización benéfica -->
+<script data-purpose="entity-tabs-toggle">
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabOng = document.getElementById('tab-btn-ong');
+      const tabBenefica = document.getElementById('tab-btn-benefica');
+      const panelOng = document.getElementById('panel-ong');
+      const panelBenefica = document.getElementById('panel-benefica');
+      const panelLabel = document.getElementById('panel-label');
+
+      const ongActive = "py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] transition-all flex items-center justify-center space-x-2";
+      const ongInactive = "py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 transition-all flex items-center justify-center space-x-2";
+      const beneficaActive = "py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] border-l border-slate-200 transition-all flex items-center justify-center space-x-2";
+      const beneficaInactive = "py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 border-l border-slate-200 transition-all flex items-center justify-center space-x-2";
+
+      function activate(tab) {
+        const isOng = tab === 'ong';
+        tabOng.className = isOng ? ongActive : ongInactive;
+        tabBenefica.className = isOng ? beneficaInactive : beneficaActive;
+        panelOng.classList.toggle('hidden', !isOng);
+        panelBenefica.classList.toggle('hidden', isOng);
+        panelLabel.textContent = isOng ? 'SOLICITUD DE ONG' : 'SOLICITUD DE ORGANIZACIÓN BENÉFICA';
+      }
+
+      if (tabOng && tabBenefica) {
+        tabOng.addEventListener('click', () => activate('ong'));
+        tabBenefica.addEventListener('click', () => activate('benefica'));
+      }
+    });
+  </script>
+<script src="js/solicitudes-counter.js"></script>
+</body></html>
