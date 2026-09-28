@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Configurar acceso Super Admin | ImpactoLOCAL</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    body{font-family:Inter,Arial,sans-serif;background:#f7f9f4;color:#202b22;margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;box-sizing:border-box}.card{background:#fff;max-width:440px;width:100%;padding:32px;border:1px solid #e6e9e1;border-radius:16px;box-shadow:0 10px 30px -12px rgba(18,44,27,.18)}h1{font-size:24px;margin:0 0 8px}p{color:#667368;line-height:1.5}label{display:block;font-weight:600;margin:16px 0 6px}input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #cbd5d1;border-radius:8px;font:inherit}button{margin-top:20px;width:100%;padding:13px;border:0;border-radius:8px;background:#1f5232;color:white;font:inherit;font-weight:700;cursor:pointer}.msg{min-height:24px;margin-top:14px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Configurar Super Admin</h1>
+    <p>Usa la clave temporal configurada en Render. Cada correo autorizado solo puede crear su cuenta una vez.</p>
+    <form id="setup-form">
+      <label for="email">Correo autorizado</label>
+      <input id="email" name="email" type="email" autocomplete="username" required>
+      <label for="setup-key">Clave de configuración</label>
+      <input id="setup-key" name="setupKey" type="password" autocomplete="off" required>
+      <label for="password">Crea una contraseña (mínimo 12 caracteres)</label>
+      <input id="password" name="password" type="password" minlength="12" autocomplete="new-password" required>
+      <button type="submit">Crear cuenta Super Admin</button>
+      <div class="msg" id="message" role="status"></div>
+    </form>
+    <a href="administradores-iniciar-sesion.html">Ir al inicio de sesión</a>
+  </main>
+  <script>
+    document.getElementById('setup-form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const message = document.getElementById('message');
+      const values = Object.fromEntries(new FormData(this).entries());
+      try {
+        const response = await fetch('/api/admin/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
+        const result = await response.json();
+        message.textContent = result.message || (response.ok ? 'Cuenta creada.' : 'No se pudo crear la cuenta.');
+        message.style.color = response.ok ? '#167343' : '#b42318';
+        if (response.ok) this.reset();
+      } catch {
+        message.textContent = 'No se pudo conectar con el servidor.';
+        message.style.color = '#b42318';
+      }
+    });
+  </script>
+</body>
+</html>

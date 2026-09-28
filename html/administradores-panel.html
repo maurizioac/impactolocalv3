@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moderación de solicitudes | ImpactoLOCAL</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    body{font-family:Inter,Arial,sans-serif;background:#f7f9f4;color:#202b22;margin:0}.top{background:#fff;border-bottom:1px solid #e6e9e1;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}.wrap{max-width:1000px;margin:36px auto;padding:0 20px}h1{margin-bottom:6px}.muted{color:#667368}.item{background:#fff;border:1px solid #e6e9e1;border-radius:12px;padding:20px;margin:16px 0;box-shadow:0 4px 15px rgba(18,44,27,.06)}.item h2{font-size:18px;margin:0 0 10px}.meta{display:flex;gap:16px;flex-wrap:wrap;color:#667368;font-size:14px}.state{font-weight:700;text-transform:capitalize}.actions{display:flex;gap:10px;margin-top:16px}.actions button,.top button{border:0;border-radius:7px;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer}.approve{background:#1f5232;color:white}.reject{background:#fff0ec;color:#a33316}.top button{background:#edf1eb;color:#202b22}.empty,.error{padding:20px;border-radius:10px;background:#fff}.error{color:#a33316}.reason{margin-top:12px;white-space:pre-wrap}.back{color:#1f5232}
+  </style>
+</head>
+<body>
+  <header class="top"><strong>ImpactoLOCAL · Moderación</strong><button id="logout" type="button">Cerrar sesión</button></header>
+  <main class="wrap">
+    <a class="back" href="administradores.html">← Volver</a>
+    <h1>Solicitudes de organizaciones</h1>
+    <p class="muted">Revisa las solicitudes y registra el motivo cuando rechaces una.</p>
+    <div id="list" aria-live="polite">Cargando solicitudes…</div>
+  </main>
+  <script>
+    const list = document.getElementById('list');
+    function make(tag, cls, text) { const el = document.createElement(tag); if (cls) el.className = cls; if (text !== undefined) el.textContent = text; return el; }
+    async function load() {
+      try {
+        const response = await fetch('/api/admin/solicitudes');
+        if (response.status === 401) { location.replace('administradores-iniciar-sesion.html'); return; }
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'No se pudieron cargar las solicitudes.');
+        list.replaceChildren();
+        if (!result.solicitudes.length) { list.append(make('p', 'empty', 'Todavía no hay solicitudes.')); return; }
+        result.solicitudes.forEach((request) => {
+          const card = make('article', 'item');
+          card.append(make('h2', '', request.usuario));
+          const meta = make('div', 'meta');
+          meta.append(make('span', '', 'Tipo: ' + request.tipo), make('span', '', 'Correo: ' + request.email), make('span', 'state', 'Estado: ' + request.estado), make('span', '', 'Recibida: ' + new Date(request.creado_en).toLocaleString('es-PE')));
+          card.append(meta);
+          if (request.motivo_rechazo) card.append(make('p', 'reason', 'Motivo: ' + request.motivo_rechazo));
+          if (request.estado === 'pendiente') {
+            const actions = make('div', 'actions');
+            const approve = make('button', 'approve', 'Aprobar');
+            const reject = make('button', 'reject', 'Rechazar');
+            approve.type = reject.type = 'button';
+            approve.addEventListener('click', () => update(request.id, 'aprobada', ''));
+            reject.addEventListener('click', async () => {
+              const reason = prompt('Escribe el motivo del rechazo (mínimo 5 caracteres):');
+              if (reason !== null) await update(request.id, 'rechazada', reason);
+            });
+            actions.append(approve, reject);
+            card.append(actions);
+          }
+          list.append(card);
+        });
+      } catch (error) {
+        list.replaceChildren(make('p', 'error', error.message));
+      }
+    }
+    async function update(id, estado, motivo) {
+      try {
+        const response = await fetch('/api/admin/solicitudes/' + encodeURIComponent(id), { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ estado, motivo }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'No se pudo actualizar la solicitud.');
+        await load();
+      } catch (error) { alert(error.message); }
+    }
+    document.getElementById('logout').addEventListener('click', async () => {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      location.replace('administradores-iniciar-sesion.html');
+    });
+    load();
+  </script>
+</body>
+</html>
