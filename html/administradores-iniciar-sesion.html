@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8faf6">
+  <title>ImpactoLocal - Administradores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .admin-login-page{font-family:Inter,Arial,sans-serif;background:#f7f9f4;color:#203528;min-height:100vh}
+    .admin-login-header{background:#fff;border-bottom:1px solid #e5e9e2}
+    .admin-login-card{width:min(100%,480px);background:#fff;border:1px solid #e2e8df;border-radius:20px;box-shadow:0 12px 34px rgba(25,55,33,.08)}
+    .admin-login-field{display:block;width:100%;border:1px solid #d7e0d6;border-radius:10px;background:#fff;padding:12px 14px;color:#203528;font:inherit;font-size:14px}
+    .admin-login-field:focus{outline:3px solid rgba(43,111,59,.15);border-color:#286b40}
+    .admin-login-submit{width:100%;border:0;border-radius:10px;background:#1e5128;color:#fff;padding:13px 16px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s}
+    .admin-login-submit:hover{background:#174020}
+    .admin-login-link{color:#1e5128;font-weight:700;text-decoration:none}
+    .admin-login-link:hover{text-decoration:underline}
+    .admin-login-footer{border-top:1px solid #e5e9e2;background:#fff;color:#728075}
+    .admin-password-wrap{position:relative}.admin-password-wrap .admin-login-field{padding-right:48px}
+    .admin-password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:8px;background:transparent;color:#718075;cursor:pointer}
+    .admin-password-toggle:hover{background:#f0f4ef;color:#1e5128}
+    @media(max-width:520px){.admin-login-card{padding:24px!important;border-radius:16px}}
+  </style>
+</head>
+<body class="admin-login-page flex flex-col">
+  <header class="admin-login-header">
+    <div class="admin-login-header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="logo-area" data-purpose="brand-container" aria-label="ImpactoLOCAL, página principal">
+        <i class="fa-solid fa-sun logo-icon" aria-hidden="true"></i>
+        <span class="logo-text">
+          <span class="logo-title">ImpactoLOCAL</span>
+          <span class="logo-subtitle">PERÚ: ACCIÓN &amp; CONFIANZA</span>
+        </span>
+      </a>
+      <a href="index.html" class="admin-login-back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver</a>
+    </div>
+  </header>
+
+  <main class="flex-1 flex items-center justify-center px-4 py-12">
+    <section class="admin-login-card p-10" aria-labelledby="adminLoginTitle">
+      <div class="mx-auto mb-6 w-20 h-20 rounded-full border-2 border-green-900 bg-green-50 flex items-center justify-center text-green-900" aria-hidden="true">
+        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 5 6v5c0 4.8 3 8.4 7 10 4-1.6 7-5.2 7-10V6l-7-3Z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.2 11 14l4-4.3"></path></svg>
+      </div>
+      <div class="mb-8 text-center">
+        <p class="mb-2 text-xs font-extrabold uppercase tracking-widest text-orange-700">Acceso restringido</p>
+        <h1 id="adminLoginTitle" class="text-2xl font-bold text-slate-900" style="font-family:Lora,Georgia,serif">Iniciar sesión</h1>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">Ingresa con el correo autorizado y la contraseña de tu cuenta administradora.</p>
+      </div>
+
+      <form action="#" method="POST" data-purpose="admin-login-form" data-api="/api/admin/login" data-redirect="administradores-panel.html" class="space-y-5">
+        <div>
+          <label for="admin-email" class="mb-2 block text-sm font-semibold text-slate-700">Correo autorizado</label>
+          <input id="admin-email" class="admin-login-field" name="email" type="email" placeholder="admin@ejemplo.com" autocomplete="username" required>
+        </div>
+        <div>
+          <label for="admin-password" class="mb-2 block text-sm font-semibold text-slate-700">Contraseña</label>
+          <div class="admin-password-wrap">
+            <input id="admin-password" class="admin-login-field" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+            <button class="admin-password-toggle" type="button" id="toggle-admin-password" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg class="mx-auto h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+        </div>
+        <button class="admin-login-submit" type="submit">Iniciar sesión</button>
+      </form>
+
+      <div class="mt-7 border-t border-slate-100 pt-5 text-center">
+        <p class="text-sm text-slate-500">¿Aún no configuraste tu cuenta?</p>
+        <a class="admin-login-link mt-1 inline-block text-sm" href="super-admin-configurar.html">Configurar cuenta Super Admin</a>
+      </div>
+      <p class="mt-6 rounded-lg bg-green-50 px-4 py-3 text-xs leading-relaxed text-green-900"><strong>Seguridad:</strong> solo los correos autorizados pueden iniciar sesión como administradores.</p>
+    </section>
+  </main>
+
+  <footer class="admin-login-footer py-5 text-center text-xs">
+    <p>ImpactoLocal © 2026 · <a href="administradores.html" class="admin-login-link">USMP 2026 - II</a> · Acceso para el equipo administrador</p>
+  </footer>
+
+  <script>
+    document.getElementById('toggle-admin-password').addEventListener('click', function () {
+      var input = document.getElementById('admin-password');
+      var visible = input.type === 'password';
+      input.type = visible ? 'text' : 'password';
+      this.setAttribute('aria-pressed', String(visible));
+      this.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+  </script>
+  <script src="../js/forms.js"></script>
+</body>
+</html>
