@@ -45,8 +45,25 @@ form button[disabled]{opacity:.65;cursor:progress}
   .header-actions .btn-text,.user-avatar{display:none}
   .nav-extra{display:flex}
   .logo-subtitle{display:none}
-  .main-content{padding:1rem .9rem 2.5rem}
-  .hero-banner{height:240px;border-radius:12px}
+  .site-header{padding:.55rem .75rem}
+  .header-container{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:.5rem}
+  .logo-area{grid-column:1;grid-row:1;min-width:0}
+  .brand-logo{width:clamp(135px,44vw,195px);max-width:100%}
+  .header-actions{grid-column:2;grid-row:1;margin:0;gap:0}
+  .header-actions .btn-pill{padding:.55rem .85rem;font-size:.78rem;white-space:nowrap}
+  .nav-toggle{grid-column:3;grid-row:1;width:40px;height:40px;border-radius:10px}
+  .main-nav,.main-nav.is-open{grid-column:1/-1;grid-row:2;width:100%;margin:0;padding:.5rem 0 0;border-top:1px solid #e2e8df}
+  .main-nav.is-open{display:flex;flex-direction:column;gap:.15rem}
+  .main-nav .nav-item{padding:.7rem .8rem;font-size:.92rem}
+  .main-content{padding:.9rem .85rem 2.25rem}
+  .hero-banner{height:clamp(205px,58vw,250px);border-radius:14px}
+  .hero-content{padding:0 1rem}
+  .hero-content h1{font-size:clamp(1.45rem,6vw,1.9rem);line-height:1.22}
+  .org-badge-container{margin-top:-13px}
+  .section-block{margin-top:2.5rem}
+  .section-heading{font-size:1.7rem;margin-bottom:1.25rem}
+  .problem-card{padding:1.25rem;font-size:.98rem;line-height:1.65}
+  .diagnostic-box{padding:1.4rem 1.15rem}
   .stats-grid,.solution-cards-grid{grid-template-columns:1fr}
   .section-block{padding-left:0;padding-right:0}
   .auth-card{padding:1.5rem 1.1rem;border-radius:14px}
