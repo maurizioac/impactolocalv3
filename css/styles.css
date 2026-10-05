@@ -36,6 +36,31 @@ body {
     gap: 0.75rem;
 }
 
+.brand-logo {
+    display: block;
+    width: 250px;
+    max-width: 54vw;
+    height: auto;
+}
+.brand-logo--compact { width: 225px; }
+.admin-panel-brand { display: flex; align-items: center; gap: 14px; }
+.admin-panel-brand-label { color: #607166; font-size: .78rem; font-weight: 700; }
+.footer-brand-image { display: inline-flex; align-items: center; background: #ffffff; padding: 4px 9px; border-radius: 8px; }
+.footer-brand-image .brand-logo { width: 190px; max-width: 65vw; }
+
+.brand-image-holder {
+    display: flex;
+    align-items: center;
+}
+
+.logo-area .logo-icon,
+.logo-area .logo-text,
+.il-logo .il-logo-icon,
+.il-logo .il-logo-text,
+.brand-image-holder > :not(.brand-logo) {
+    display: none !important;
+}
+
 .logo-icon {
     font-size: 1.75rem;
     color: #d97706;
