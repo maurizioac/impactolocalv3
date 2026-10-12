@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8faf6">
-  <title>ImpactoLocal - Administradores</title>
+  <title>ImpactoLocal - Organizaciones</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
@@ -23,9 +23,9 @@
     .admin-login-link{color:#1e5128;font-weight:700;text-decoration:none}
     .admin-login-link:hover{text-decoration:underline}
     .admin-login-footer{border-top:1px solid #e5e9e2;background:#fff;color:#728075}
-    .admin-password-wrap{position:relative}.admin-password-wrap .admin-login-field{padding-right:48px}
-    .admin-password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:8px;background:transparent;color:#718075;cursor:pointer}
-    .admin-password-toggle:hover{background:#f0f4ef;color:#1e5128}
+    .organization-password-wrap{position:relative}.organization-password-wrap .admin-login-field{padding-right:48px}
+    .organization-password-toggle{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:8px;background:transparent;color:#718075;cursor:pointer}
+    .organization-password-toggle:hover{background:#f0f4ef;color:#1e5128}
     @media(max-width:520px){.admin-login-card{padding:24px!important;border-radius:16px}}
   </style>
 </head>
@@ -45,26 +45,26 @@
   </header>
 
   <main class="flex-1 flex items-center justify-center px-4 py-12">
-    <section class="admin-login-card p-10" aria-labelledby="adminLoginTitle">
+    <section class="admin-login-card p-10" aria-labelledby="organizationLoginTitle">
       <div class="mx-auto mb-6 w-20 h-20 rounded-full border-2 border-green-900 bg-green-50 flex items-center justify-center text-green-900" aria-hidden="true">
         <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 5 6v5c0 4.8 3 8.4 7 10 4-1.6 7-5.2 7-10V6l-7-3Z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.2 11 14l4-4.3"></path></svg>
       </div>
       <div class="mb-8 text-center">
-        <p class="mb-2 text-xs font-extrabold uppercase tracking-widest text-orange-700">Acceso restringido</p>
-        <h1 id="adminLoginTitle" class="text-2xl font-bold text-slate-900" style="font-family:Lora,Georgia,serif">Iniciar sesión</h1>
-        <p class="mt-2 text-sm leading-relaxed text-slate-500">Ingresa con el correo autorizado y la contraseña de tu cuenta administradora.</p>
+        <p class="mb-2 text-xs font-extrabold uppercase tracking-widest text-orange-700">Acceso para organizaciones</p>
+        <h1 id="organizationLoginTitle" class="text-2xl font-bold text-slate-900" style="font-family:Lora,Georgia,serif">Iniciar sesión</h1>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">Ingresa con el correo electrónico y la contraseña de tu organización.</p>
       </div>
 
-      <form action="#" method="POST" data-purpose="admin-login-form" data-api="/api/admin/login" data-redirect="administradores-panel.html" class="space-y-5">
+      <form action="#" method="POST" data-purpose="organization-login-form" data-api="/api/login" data-redirect="ong-panel.html" class="space-y-5">
         <div>
-          <label for="admin-email" class="mb-2 block text-sm font-semibold text-slate-700">Correo autorizado</label>
-          <input id="admin-email" class="admin-login-field" name="email" type="email" placeholder="admin@ejemplo.com" autocomplete="username" required>
+          <label for="organization-email" class="mb-2 block text-sm font-semibold text-slate-700">Correo electrónico</label>
+          <input id="organization-email" class="admin-login-field" name="email" type="email" placeholder="organizacion@ejemplo.com" autocomplete="username" required>
         </div>
         <div>
-          <label for="admin-password" class="mb-2 block text-sm font-semibold text-slate-700">Contraseña</label>
-          <div class="admin-password-wrap">
-            <input id="admin-password" class="admin-login-field" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
-            <button class="admin-password-toggle" type="button" id="toggle-admin-password" aria-label="Mostrar contraseña" aria-pressed="false">
+          <label for="organization-password" class="mb-2 block text-sm font-semibold text-slate-700">Contraseña</label>
+          <div class="organization-password-wrap">
+            <input id="organization-password" class="admin-login-field" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+            <button class="organization-password-toggle" type="button" id="toggle-organization-password" aria-label="Mostrar contraseña" aria-pressed="false">
               <svg class="mx-auto h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             </button>
           </div>
@@ -72,21 +72,18 @@
         <button class="admin-login-submit" type="submit">Iniciar sesión</button>
       </form>
 
-      <div class="mt-7 border-t border-slate-100 pt-5 text-center">
-        <p class="text-sm text-slate-500">¿Aún no configuraste tu cuenta?</p>
-        <a class="admin-login-link mt-1 inline-block text-sm" href="super-admin-configurar.html">Configurar cuenta Super Admin</a>
-      </div>
-      <p class="mt-6 rounded-lg bg-green-50 px-4 py-3 text-xs leading-relaxed text-green-900"><strong>Seguridad:</strong> solo los correos autorizados pueden iniciar sesión como administradores.</p>
+      <div class="mt-7 border-t border-slate-100 pt-5 text-center"><p class="text-sm text-slate-500">¿Aún no tienes cuenta institucional?</p><a class="admin-login-link mt-1 inline-block text-sm" href="administradores-registrar.html">Solicitar registro institucional</a></div>
+      <p class="mt-6 rounded-lg bg-green-50 px-4 py-3 text-xs leading-relaxed text-green-900"><strong>Seguridad:</strong> solo los correos autorizados pueden iniciar sesión como organizaciones.</p>
     </section>
   </main>
 
   <footer class="admin-login-footer py-5 text-center text-xs">
-    <p>ImpactoLocal © 2026 · <a href="administradores.html" class="admin-login-link">USMP 2026 - II</a> · Acceso para el equipo administrador</p>
+    <p>ImpactoLocal © 2026 · <a href="administradores.html" class="admin-login-link">USMP 2026 - II</a> · Acceso para organizaciones</p>
   </footer>
 
   <script>
-    document.getElementById('toggle-admin-password').addEventListener('click', function () {
-      var input = document.getElementById('admin-password');
+    document.getElementById('toggle-organization-password').addEventListener('click', function () {
+      var input = document.getElementById('organization-password');
       var visible = input.type === 'password';
       input.type = visible ? 'text' : 'password';
       this.setAttribute('aria-pressed', String(visible));
