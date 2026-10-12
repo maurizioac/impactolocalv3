@@ -1,74 +1,67 @@
-import { sql, hashPassword, EMAIL_RE, soloMetodos } from './_db.js';
-
-function optionalUrl(value) {
-  const raw = String(value || '').trim();
-  if (!raw) return null;
-  try {
-    const url = new URL(raw);
-    return ['http:', 'https:'].includes(url.protocol) ? url.toString() : false;
-  } catch {
-    return false;
-  }
-}
+import { sql, hashPassword, verifyPassword, soloMetodos } from './_db.js';
 
 export default async function handler(req, res) {
-  if (!soloMetodos(req, res, ['GET', 'POST'])) return;
+  if (!soloMetodos(req, res, ['POST'])) return;
+
+  const rol = String(req.body?.rol || 'usuario');
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const password = String(req.body?.password || '');
+  const generico = { ok: false, message: 'Credenciales incorrectas.' };
 
   try {
-    if (req.method === 'GET') {
-      const [{ total }] = await sql`SELECT count(*)::int AS total FROM "SOLICITUDES_ORG"`;
-      return res.status(200).json({ ok: true, total });
+    let fila;
+    let table = 'CLIENTES';
+    if (rol === 'admin') {
+      [fila] = await sql`
+        SELECT "NOMBRE DE USUARIO" AS nombre, "CONTRASEÑA" AS password_hash
+        FROM "ADMINS" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+      table = 'ADMINS';
+    } else {
+      [fila] = await sql`
+        SELECT "NOMBRE DE USUARIO" AS nombre,
+               "CORREO ELECTRÓNICO" AS email, "OCUPACIÓN" AS ocupacion,
+               "CONTRASEÑA" AS password_hash
+        FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+      if (!fila) {
+        [fila] = await sql`
+          SELECT "NOMBRE DE USUARIO" AS nombre, "CONTRASEÑA" AS password_hash
+          FROM "PERSONAS" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+        table = 'PERSONAS';
+      }
+      if (!fila) {
+        [fila] = await sql`
+          SELECT "NOMBRE DE USUARIO" AS nombre, "CONTRASEÑA" AS password_hash
+          FROM "ORGANIZACIONES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+        table = 'ORGANIZACIONES';
+      }
     }
 
-    const tipo = String(req.body?.tipo || '').trim().toUpperCase();
-    const usuario = String(req.body?.username || '').trim();
-    const email = String(req.body?.email || '').trim().toLowerCase();
-    const password = String(req.body?.password || '');
-    const ocupacion = String(req.body?.ocupacion || '').trim();
-    const web = optionalUrl(req.body?.web);
-    const instagram = optionalUrl(req.body?.instagram);
-    const facebook = optionalUrl(req.body?.facebook);
-    const tiktok = optionalUrl(req.body?.tiktok);
+    const stored = String(fila?.password_hash || '');
+    const valid = verifyPassword(password, stored) || stored === password;
+    if (!fila || !valid) return res.status(401).json(generico);
 
-    if (!['ONG', 'VOLUNTARIADO'].includes(tipo))
-      return res.status(400).json({ ok: false, message: 'Elige si representas a una ONG o a una organización de voluntariado.' });
-    if (usuario.length < 3 || usuario.length > 120)
-      return res.status(400).json({ ok: false, message: 'El usuario debe tener entre 3 y 120 caracteres.' });
-    if (!EMAIL_RE.test(email) || email.length > 254)
-      return res.status(400).json({ ok: false, message: 'Correo electrónico no válido.' });
-    if (password.length < 8)
-      return res.status(400).json({ ok: false, message: 'La contraseña debe tener al menos 8 caracteres.' });
-    if (ocupacion.length < 2 || ocupacion.length > 120)
-      return res.status(400).json({ ok: false, message: 'Describe la ocupación de la organización (2 a 120 caracteres).' });
-    if ([web, instagram, facebook, tiktok].includes(false))
-      return res.status(400).json({ ok: false, message: 'Cada enlace debe ser una URL válida que empiece con http:// o https://.' });
+    // Upgrade existing plain-text credentials after a successful login.
+    if (!stored.includes(':')) {
+      const hashed = hashPassword(password);
+      if (table === 'ADMINS') {
+        await sql`UPDATE "ADMINS" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
+      } else if (table === 'PERSONAS') {
+        await sql`UPDATE "PERSONAS" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
+      } else if (table === 'ORGANIZACIONES') {
+        await sql`UPDATE "ORGANIZACIONES" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
+      } else {
+        await sql`UPDATE "CLIENTES" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
+      }
+    }
 
-    const [existing] = await sql`
-      SELECT 1 FROM "ORGANIZACIONES"
-      WHERE lower("NOMBRE DE USUARIO") = lower(${usuario})
-         OR lower("CORREO") = ${email}
-      LIMIT 1`;
-    if (existing)
-      return res.status(409).json({ ok: false, message: 'Ese nombre de usuario o correo ya está registrado.' });
-
-    await sql`
-      INSERT INTO "ORGANIZACIONES" (
-        "NOMBRE DE USUARIO", "CORREO", "CONTRASEÑA", "OCUPACIÓN",
-        "WEB", "INSTAGRAM", "FACEBOOK", "TIKTOK", "TIPO"
-      ) VALUES (
-        ${usuario}, ${email}, ${hashPassword(password)}, ${ocupacion},
-        ${web}, ${instagram}, ${facebook}, ${tiktok}, ${tipo}
-      )`;
-
-    return res.status(201).json({ ok: true, message: 'La cuenta de tu organización se creó correctamente.' });
+    const perfil = table === 'CLIENTES' ? {
+      nombre: fila.nombre,
+      email: fila.email || email,
+      ocupacion: fila.ocupacion
+    } : null;
+    return res.status(200).json({ ok: true, nombre: fila.nombre, email, rol: rol === 'admin' ? 'admin' : 'usuario', perfil });
   } catch (err) {
-    console.error('ERROR /api/solicitudes:', err);
-    if (err.code === '23505')
-      return res.status(409).json({ ok: false, message: 'Ese nombre de usuario o correo ya está registrado.' });
-    if (err.code === '42P01')
-      return res.status(500).json({ ok: false, message: 'Neon no encuentra la tabla ORGANIZACIONES. Verifica el nombre de la tabla y la conexión.' });
-    if (err.code === '42703')
-      return res.status(500).json({ ok: false, message: 'Falta una columna en ORGANIZACIONES. Verifica los nombres exactos y agrega TIPO si todavía no existe.' });
-    return res.status(500).json({ ok: false, message: 'No pudimos crear la cuenta. Revisa la estructura de ORGANIZACIONES e intenta de nuevo.' });
+    console.error('ERROR /api/login:', err);
+    return res.status(500).json({ ok: false, message: 'Error del servidor. Intenta de nuevo.' });
   }
 }
