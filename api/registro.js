@@ -31,7 +31,12 @@ export default async function handler(req, res) {
       INSERT INTO "CLIENTES" ("NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA", "NÚMERO TELEFÓNICO", "DNI", "OCUPACIÓN")
       VALUES (${nombre}, ${email}, ${hashPassword(password)}, ${telefono}, ${dni}, ${ocupacion})
       RETURNING "ID"`;
-    return res.status(201).json({ ok: true, nombre, id: cliente.ID });
+    return res.status(201).json({
+      ok: true,
+      nombre,
+      email,
+      perfil: { id: cliente.ID, nombre, email, telefono, dni, ocupacion }
+    });
   } catch (err) {
     if (err.code === '23505')
       return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
