@@ -17,6 +17,10 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 .il-form-msg.is-error{background:#fdece0;color:#9a3a0a;border:1px solid #f4c4a3}
 .profile-logout{display:block;margin:1rem auto 0;padding:.65rem 1rem;border:0;background:transparent;color:#475569;font-weight:600;cursor:pointer}
 .profile-logout:hover{color:#15803d;text-decoration:underline}
+.profile-data{margin:1.5rem 0}
+.profile-data div{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid #e2e8df}
+.profile-data dt{color:#64748b;font-weight:600}
+.profile-data dd{margin:0;text-align:right;color:#1e293b;font-weight:600;overflow-wrap:anywhere}
 form button[disabled]{opacity:.65;cursor:progress}
 
 
