@@ -21,6 +21,15 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 .profile-data div{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid #e2e8df}
 .profile-data dt{color:#64748b;font-weight:600}
 .profile-data dd{margin:0;text-align:right;color:#1e293b;font-weight:600;overflow-wrap:anywhere}
+.password-dialog{width:min(560px,calc(100% - 2rem));max-height:calc(100% - 2rem);padding:0;border:0;border-radius:18px;color:#1e293b;box-shadow:0 24px 70px rgba(15,23,42,.3)}
+.password-dialog::backdrop{background:rgba(15,23,42,.58);backdrop-filter:blur(2px)}
+.password-dialog-content{padding:1.5rem}
+.password-dialog-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.password-dialog-heading h2{margin:0;color:#163b23;font-size:1.35rem}
+.password-dialog-close{width:2.25rem;height:2.25rem;border:0;border-radius:50%;background:#f1f5f9;color:#334155;font-size:1.5rem;line-height:1;cursor:pointer}
+.password-dialog p{color:#64748b;line-height:1.5}
+.password-dialog .form-field{margin-top:1rem}
+.password-dialog .profile-logout{margin-bottom:0}
 form button[disabled]{opacity:.65;cursor:progress}
 
 
