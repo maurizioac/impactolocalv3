@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('password-form');
   var message = document.getElementById('profile-message');
+  var changeButton = document.getElementById('show-password-button');
+  var cancelButton = document.getElementById('cancel-password-button');
+  var profileData = document.getElementById('profile-data');
   var submit = form.querySelector('button[type="submit"]');
 
   function showMessage(text, ok) {
@@ -14,14 +17,39 @@ document.addEventListener('DOMContentLoaded', function () {
     catch (e) { return null; }
   }
 
+  function setValue(id, value) {
+    document.getElementById(id).textContent = value === null || value === undefined || value === '' ? 'No registrado' : String(value);
+  }
+
   var session = getSession();
   if (!session || session.rol !== 'usuario') {
-    form.hidden = true;
-    showMessage('Inicia sesión con una cuenta de cliente para editar tu perfil.', false);
-  } else if (!session.email) {
-    form.hidden = true;
-    showMessage('Tu sesión es anterior a esta mejora. Cierra sesión e inicia sesión otra vez para continuar.', false);
+    showMessage('Inicia sesión con una cuenta de cliente para ver tu perfil.', false);
+  } else if (!session.email || !session.perfil) {
+    showMessage('Cierra sesión e inicia sesión otra vez para cargar los datos de tu perfil.', false);
+  } else {
+    var perfil = session.perfil;
+    setValue('profile-id', perfil.id);
+    setValue('profile-name', perfil.nombre || session.nombre);
+    setValue('profile-email', perfil.email || session.email);
+    setValue('profile-phone', perfil.telefono);
+    setValue('profile-dni', perfil.dni);
+    setValue('profile-occupation', perfil.ocupacion);
+    profileData.hidden = false;
+    changeButton.hidden = false;
   }
+
+  changeButton.addEventListener('click', function () {
+    changeButton.hidden = true;
+    form.hidden = false;
+    message.hidden = true;
+  });
+
+  cancelButton.addEventListener('click', function () {
+    form.reset();
+    form.hidden = true;
+    changeButton.hidden = false;
+    message.hidden = true;
+  });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -52,7 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(function (result) {
         showMessage(result.data.message || (result.ok ? 'Contraseña actualizada.' : 'No se pudo actualizar la contraseña.'), result.ok);
-        if (result.ok) form.reset();
+        if (result.ok) {
+          form.reset();
+          form.hidden = true;
+          changeButton.hidden = false;
+        }
       })
       .catch(function () { showMessage('No hay conexión con el servidor. Intenta de nuevo.', false); })
       .then(function () { submit.disabled = false; });
