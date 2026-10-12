@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import registro from './api/registro.js';
+import cambiarPassword from './api/cambiar-password.js';
 import login from './api/login.js';
 import solicitudes from './api/solicitudes.js';
 import buscar from './api/buscar.js';
@@ -18,6 +19,7 @@ const app = express();
 app.use(express.json());
 
 app.all('/api/registro', registro);
+app.all('/api/cambiar-password', cambiarPassword);
 app.all('/api/login', login);
 app.all('/api/solicitudes', solicitudes);
 app.all('/api/buscar', buscar);
