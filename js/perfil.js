@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('password-form');
   var message = document.getElementById('profile-message');
   var changeButton = document.getElementById('show-password-button');
+  var logoutButton = document.getElementById('logout-button');
   var dialog = document.getElementById('password-dialog');
   var closeButton = document.getElementById('cancel-password-button');
   var cancelButton = document.getElementById('cancel-password-form');
@@ -26,18 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
   var session = getSession();
   if (!session || session.rol !== 'usuario') {
     showMessage('Inicia sesión con una cuenta de cliente para ver tu perfil.', false);
-  } else if (!session.email || !session.perfil) {
-    showMessage('Cierra sesión e inicia sesión otra vez para cargar los datos de tu perfil.', false);
   } else {
-    var perfil = session.perfil;
-    setValue('profile-id', perfil.id);
-    setValue('profile-name', perfil.nombre || session.nombre);
-    setValue('profile-email', perfil.email || session.email);
-    setValue('profile-phone', perfil.telefono);
-    setValue('profile-dni', perfil.dni);
-    setValue('profile-occupation', perfil.ocupacion);
-    profileData.hidden = false;
-    changeButton.hidden = false;
+    logoutButton.hidden = false;
+    if (!session.email || !session.perfil) {
+      showMessage('Cierra sesión e inicia sesión otra vez para cargar los datos de tu perfil.', false);
+    } else {
+      var perfil = session.perfil;
+      setValue('profile-id', perfil.id);
+      setValue('profile-name', perfil.nombre || session.nombre);
+      setValue('profile-email', perfil.email || session.email);
+      setValue('profile-phone', perfil.telefono);
+      setValue('profile-dni', perfil.dni);
+      setValue('profile-occupation', perfil.ocupacion);
+      profileData.hidden = false;
+      changeButton.hidden = false;
+    }
   }
 
   changeButton.addEventListener('click', function () {
@@ -93,5 +97,10 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .catch(function () { showMessage('No hay conexión con el servidor. Intenta de nuevo.', false); })
       .then(function () { submit.disabled = false; });
+  });
+
+  logoutButton.addEventListener('click', function () {
+    localStorage.removeItem('il_sesion');
+    window.location.href = '/html/index.html';
   });
 });
