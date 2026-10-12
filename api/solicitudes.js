@@ -43,18 +43,32 @@ export default async function handler(req, res) {
     if ([web, instagram, facebook, tiktok].includes(false))
       return res.status(400).json({ ok: false, message: 'Cada enlace debe ser una URL válida que empiece con http:// o https://.' });
 
+    const [existing] = await sql`
+      SELECT 1 FROM "ORGANIZACIONES"
+      WHERE lower("NOMBRE DE USUARIO") = lower(${usuario})
+         OR lower("CORREO ELECTRÓNICO") = ${email}
+      LIMIT 1`;
+    if (existing)
+      return res.status(409).json({ ok: false, message: 'Ese nombre de usuario o correo ya está registrado.' });
+
     await sql`
-      INSERT INTO solicitudes_registro_org
-        (tipo, usuario, email, password_hash, ocupacion, web, instagram, facebook, tiktok)
-      VALUES
-        (${tipo}, ${usuario}, ${email}, ${hashPassword(password)}, ${ocupacion}, ${web}, ${instagram}, ${facebook}, ${tiktok})`;
-    return res.status(201).json({ ok: true, message: 'Tu solicitud fue enviada y está en revisión.' });
+      INSERT INTO "ORGANIZACIONES" (
+        "NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA", "OCUPACIÓN",
+        "WEB", "INSTAGRAM", "FACEBOOK", "TIKTOK", "TIPO"
+      ) VALUES (
+        ${usuario}, ${email}, ${hashPassword(password)}, ${ocupacion},
+        ${web}, ${instagram}, ${facebook}, ${tiktok}, ${tipo}
+      )`;
+
+    return res.status(201).json({ ok: true, message: 'La cuenta de tu organización se creó correctamente.' });
   } catch (err) {
-    if (err.code === '23505')
-      return res.status(409).json({ ok: false, message: 'Ese usuario o correo ya tiene una solicitud.' });
     console.error('ERROR /api/solicitudes:', err);
+    if (err.code === '23505')
+      return res.status(409).json({ ok: false, message: 'Ese nombre de usuario o correo ya está registrado.' });
     if (err.code === '42P01')
-      return res.status(500).json({ ok: false, message: 'Falta crear la tabla solicitudes_registro_org y las columnas de ORGANIZACIONES. Ejecuta db/schema.sql en Neon.' });
-    return res.status(500).json({ ok: false, message: 'No pudimos guardar la solicitud. Intenta de nuevo.' });
+      return res.status(500).json({ ok: false, message: 'Neon no encuentra la tabla ORGANIZACIONES. Verifica el nombre de la tabla y la conexión.' });
+    if (err.code === '42703')
+      return res.status(500).json({ ok: false, message: 'Falta una columna en ORGANIZACIONES. Verifica los nombres exactos y agrega TIPO si todavía no existe.' });
+    return res.status(500).json({ ok: false, message: 'No pudimos crear la cuenta. Revisa la estructura de ORGANIZACIONES e intenta de nuevo.' });
   }
 }
