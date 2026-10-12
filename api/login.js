@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       if (!fila) {
         [fila] = await sql`
           SELECT "NOMBRE DE USUARIO" AS nombre, "CONTRASEÑA" AS password_hash
-          FROM "ORGANIZACIONES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+          FROM "ORGANIZACIONES" WHERE lower("CORREO") = ${email} LIMIT 1`;
         table = 'ORGANIZACIONES';
       }
     }
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       } else if (table === 'PERSONAS') {
         await sql`UPDATE "PERSONAS" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
       } else if (table === 'ORGANIZACIONES') {
-        await sql`UPDATE "ORGANIZACIONES" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
+        await sql`UPDATE "ORGANIZACIONES" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO") = ${email} AND "CONTRASEÑA" = ${stored}`;
       } else {
         await sql`UPDATE "CLIENTES" SET "CONTRASEÑA" = ${hashed} WHERE lower("CORREO ELECTRÓNICO") = ${email} AND "CONTRASEÑA" = ${stored}`;
       }
