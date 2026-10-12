@@ -59,7 +59,8 @@ export default async function handler(req, res) {
       email: fila.email || email,
       ocupacion: fila.ocupacion
     } : null;
-    return res.status(200).json({ ok: true, nombre: fila.nombre, email, rol: rol === 'admin' ? 'admin' : 'usuario', perfil });
+    const rolAutenticado = rol === 'admin' ? 'admin' : table === 'ORGANIZACIONES' ? 'organizacion' : 'usuario';
+    return res.status(200).json({ ok: true, nombre: fila.nombre, email, rol: rolAutenticado, perfil });
   } catch (err) {
     console.error('ERROR /api/login:', err);
     return res.status(500).json({ ok: false, message: 'Error del servidor. Intenta de nuevo.' });
