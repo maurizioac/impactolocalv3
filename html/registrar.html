@@ -1,72 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImpactoLOCAL - Registrar Usuario</title>
-    <link rel="stylesheet" href="../css/styles.css">
-<link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="auth-body">
-    <header class="site-header">
-        <div class="header-container">
-            <a href="index.html" class="logo-area" aria-label="ImpactoLOCAL, página principal">
-                <img src="../imagenes/logo-impactolocal.svg" class="brand-logo" alt="ImpactoLOCAL — Perú: Acción y Confianza">
-                <i class="fa-solid fa-sun logo-icon"></i>
-                <div class="logo-text">
-                    <span class="logo-title">ImpactoLOCAL</span>
-                    <span class="logo-subtitle">PERÚ: ACCIÓN & CONFIANZA</span>
-                </div>
-            </a>
-            <div class="header-actions">
-                <a href="index.html" class="admin-login-back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver</a>
-            </div>
-        </div>
-    </header>
+import { sql, hashPassword, EMAIL_RE, soloMetodos } from './_db.js';
 
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            <div class="auth-header-box">
-                <h2>Crear Cuenta</h2>
-                <p>Únete a la red de micro-voluntariado y transparencia</p>
-            </div>
-            <form class="auth-form" data-api="/api/registro" data-redirect="descubre.html">
-                <div class="form-field">
-                    <label>Nombre Completo</label>
-                    <input type="text" name="nombre" placeholder="Nombres y Apellidos" autocomplete="name" minlength="2" maxlength="120" required>
-                </div>
-                <div class="form-field">
-                    <label>Correo Electrónico</label>
-                    <input type="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
-                </div>
-                <div class="form-field">
-                    <label>Contraseña</label>
-                    <input type="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" required>
-                </div>
-                <div class="form-field">
-                    <label for="registro-telefono">Número telefónico</label>
-                    <input id="registro-telefono" type="tel" name="telefono" placeholder="987654321" autocomplete="tel" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" title="Ingresa un número de 9 dígitos" required>
-                </div>
-                <div class="form-field">
-                    <label for="registro-dni">DNI</label>
-                    <input id="registro-dni" type="text" name="dni" placeholder="12345678" autocomplete="off" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" title="Ingresa un DNI de 8 dígitos" required>
-                </div>
-                <div class="form-field">
-                    <label for="registro-ocupacion">Ocupación</label>
-                    <input id="registro-ocupacion" type="text" name="ocupacion" placeholder="A qué te dedicas" maxlength="120" autocomplete="organization-title" required>
-                </div>
-                <button type="submit" class="btn-submit-form">Registrarse</button>
-            </form>
-            <div class="auth-switch">
-                <span>¿Ya tienes una cuenta?</span> <a href="iniciar-sesion.html">Inicia Sesión</a>
-            </div>
-            <div class="auth-switch">
-                <span>¿Representas a una ONG?</span> <a href="administradores-registrar.html">Solicita el registro institucional</a>
-            </div>
-        </div>
-    </div>
-<script src="../js/nav.js"></script>
-<script src="../js/forms.js"></script>
-</body>
-</html>
+export default async function handler(req, res) {
+  if (!soloMetodos(req, res, ['POST'])) return;
+
+  const nombre = String(req.body?.nombre || '').trim();
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const password = String(req.body?.password || '');
+  const telefono = String(req.body?.telefono || '').trim();
+  const dni = String(req.body?.dni || '').trim();
+  const ocupacion = String(req.body?.ocupacion || '').trim();
+
+  if (nombre.length < 2 || nombre.length > 120)
+    return res.status(400).json({ ok: false, message: 'Ingresa tu nombre completo.' });
+  if (!EMAIL_RE.test(email) || email.length > 120)
+    return res.status(400).json({ ok: false, message: 'Correo electrónico no válido.' });
+  if (password.length < 8)
+    return res.status(400).json({ ok: false, message: 'La contraseña debe tener al menos 8 caracteres.' });
+  if (!/^\d{9}$/.test(telefono))
+    return res.status(400).json({ ok: false, message: 'El número telefónico debe tener 9 dígitos.' });
+  if (!/^\d{8}$/.test(dni))
+    return res.status(400).json({ ok: false, message: 'El DNI debe tener 8 dígitos.' });
+  if (ocupacion.length < 2 || ocupacion.length > 120)
+    return res.status(400).json({ ok: false, message: 'Ingresa tu ocupación.' });
+
+  try {
+    const [existing] = await sql`
+      SELECT "ID" FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+    if (existing) return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
+    const [cliente] = await sql`
+      INSERT INTO "CLIENTES" ("NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA", "NÚMERO TELEFÓNICO", "DNI", "OCUPACIÓN")
+      VALUES (${nombre}, ${email}, ${hashPassword(password)}, ${telefono}, ${dni}, ${ocupacion})
+      RETURNING "ID"`;
+    return res.status(201).json({ ok: true, nombre, id: cliente.ID });
+  } catch (err) {
+    if (err.code === '23505')
+      return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
+    console.error('ERROR /api/registro:', err);
+    return res.status(500).json({ ok: false, message: 'No pudimos crear tu cuenta. Intenta de nuevo.' });
+  }
+}
