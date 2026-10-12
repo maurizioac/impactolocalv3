@@ -18,9 +18,9 @@ export default async function handler(req, res) {
       table = 'ADMINS';
     } else {
       [fila] = await sql`
-        SELECT "ID" AS id, "NOMBRE DE USUARIO" AS nombre,
-               "CORREO ELECTRÓNICO" AS email, "NÚMERO TELEFÓNICO" AS telefono,
-               "DNI" AS dni, "OCUPACIÓN" AS ocupacion, "CONTRASEÑA" AS password_hash
+        SELECT "NOMBRE DE USUARIO" AS nombre,
+               "CORREO ELECTRÓNICO" AS email, "OCUPACIÓN" AS ocupacion,
+               "CONTRASEÑA" AS password_hash
         FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
       if (!fila) {
         [fila] = await sql`
@@ -55,11 +55,8 @@ export default async function handler(req, res) {
     }
 
     const perfil = table === 'CLIENTES' ? {
-      id: fila.id,
       nombre: fila.nombre,
       email: fila.email || email,
-      telefono: fila.telefono,
-      dni: fila.dni,
       ocupacion: fila.ocupacion
     } : null;
     return res.status(200).json({ ok: true, nombre: fila.nombre, email, rol: rol === 'admin' ? 'admin' : 'usuario', perfil });
