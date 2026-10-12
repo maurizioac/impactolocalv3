@@ -37,6 +37,11 @@
           const meta = make('div', 'meta');
           meta.append(make('span', '', 'Tipo: ' + request.tipo), make('span', '', 'Correo: ' + request.email), make('span', 'state', 'Estado: ' + request.estado), make('span', '', 'Recibida: ' + new Date(request.creado_en).toLocaleString('es-PE')));
           card.append(meta);
+          const profile = make('div', 'meta');
+          [['Ocupación', request.ocupacion], ['Web', request.web], ['Instagram', request.instagram], ['Facebook', request.facebook], ['TikTok', request.tiktok]].forEach(([label, value]) => {
+            if (value) profile.append(make('span', '', label + ': ' + value));
+          });
+          if (profile.childNodes.length) card.append(profile);
           if (request.motivo_rechazo) card.append(make('p', 'reason', 'Motivo: ' + request.motivo_rechazo));
           if (request.estado === 'pendiente') {
             const actions = make('div', 'actions');
