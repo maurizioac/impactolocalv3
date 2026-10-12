@@ -24,8 +24,8 @@ export default async function handler(req, res) {
       ),
       insertada AS (
         INSERT INTO "ORGANIZACIONES" (
-          "NOMBRE DE USUARIO", "CORREO", "CONTRASEÑA",
-          "OCUPACIÓN", "WEB", "INSTAGRAM", "FACEBOOK", "TIKTOK", "TIPO"
+          "NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA",
+          "OCUPACIÓN", "WEB", "INSTAGRAM", "FACEBOOK", "TIK TOK", "TIPO"
         )
         SELECT s.usuario, s.email, s.password_hash, s.ocupacion,
                s.web, s.instagram, s.facebook, s.tiktok, s.tipo
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
           AND NOT EXISTS (
             SELECT 1 FROM "ORGANIZACIONES" o
             WHERE lower(o."NOMBRE DE USUARIO") = lower(s.usuario)
-               OR lower(o."CORREO") = lower(s.email)
+               OR lower(o."CORREO ELECTRÓNICO") = lower(s.email)
           )
         RETURNING id
       )
