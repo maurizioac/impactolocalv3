@@ -16,12 +16,13 @@ export default async function handler(req, res) {
 
   try {
     const [existing] = await sql`
-      SELECT id FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
+      SELECT "ID" FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
     if (existing) return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
-    await sql`
+    const [cliente] = await sql`
       INSERT INTO "CLIENTES" ("NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA")
-      VALUES (${nombre}, ${email}, ${hashPassword(password)})`;
-    return res.status(201).json({ ok: true, nombre });
+      VALUES (${nombre}, ${email}, ${hashPassword(password)})
+      RETURNING "ID"`;
+    return res.status(201).json({ ok: true, nombre, id: cliente.ID });
   } catch (err) {
     if (err.code === '23505')
       return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
