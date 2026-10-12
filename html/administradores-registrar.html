@@ -99,120 +99,55 @@
 <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
 <div class="w-full max-w-xl">
 <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-200/90 overflow-hidden" data-purpose="registration-card">
-
-<div class="grid grid-cols-2 border-b border-slate-200 bg-slate-50/50" data-purpose="entity-tabs">
-
-<button id="tab-btn-ong" class="py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] transition-all flex items-center justify-center space-x-2" type="button">
-<i class="fa-solid fa-users text-sm opacity-90"></i>
-<span class="tracking-wide">ONG's</span>
-</button>
-
-<button id="tab-btn-benefica" class="py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 border-l border-slate-200 transition-all flex items-center justify-center space-x-2" type="button">
-<i class="fa-solid fa-hand-holding-heart text-sm opacity-80"></i>
-<span class="tracking-wide">Organización benéfica</span>
-</button>
-</div>
-
 <div class="p-8 sm:p-10">
-
 <div class="flex flex-col items-center mb-8" data-purpose="avatar-representation">
-<div class="w-24 h-24 rounded-full border-[3px] border-slate-800/80 flex items-center justify-center text-slate-700 bg-white shadow-sm hover:scale-105 transition-transform duration-200">
+<div class="w-24 h-24 rounded-full border-[3px] border-slate-800/80 flex items-center justify-center text-slate-700 bg-white shadow-sm">
 <i class="fa-regular fa-user text-5xl"></i>
 </div>
-<p id="panel-label" class="mt-3 text-xs font-medium text-slate-500 tracking-wide">SOLICITUD DE ONG</p>
+<p class="mt-3 text-xs font-medium text-slate-500 tracking-wide">REGISTRO DE ORGANIZACIÓN</p>
 </div>
-
-<div id="panel-ong" data-purpose="panel-ong">
-<form action="#" class="space-y-6" data-purpose="entity-request-form" method="POST" data-api="/api/solicitudes" data-tipo="ong">
-
+<form action="#" class="space-y-6" data-purpose="entity-request-form" method="POST" data-api="/api/solicitudes">
 <div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="username">
-                Usuario:
-              </label>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="username">Nombre de usuario:</label>
 <div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="username" name="username" placeholder="Ej. ong_esperanzaviva" required="" type="text"/>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="username" name="username" placeholder="Ej. organizacion_esperanzaviva" required type="text"/>
 </div>
 </div>
-
 <div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="email">
-                Correo:
-              </label>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="email">Correo:</label>
 <div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="email" name="email" placeholder="contacto@organizacion.org.pe" required="" type="email"/>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="email" name="email" placeholder="contacto@organizacion.org.pe" required type="email"/>
 </div>
 </div>
-
 <div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="password">
-                Contraseña:
-              </label>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="password">Contraseña:</label>
 <div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password" name="password" placeholder="••••••••••••" required="" type="password" minlength="8" autocomplete="new-password"/>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password" name="password" placeholder="••••••••" required type="password" minlength="8" autocomplete="new-password"/>
 </div>
 </div>
-
+<fieldset>
+<legend class="block text-sm font-bold text-slate-800 mb-2">¿Qué tipo de organización representas?</legend>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<label class="flex items-center gap-3 rounded-lg border border-slate-300 p-4 cursor-pointer hover:border-[#1e5128] has-[:checked]:border-[#1e5128] has-[:checked]:bg-emerald-50/70">
+<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="ong" required>
+<span class="flex items-center gap-2 text-sm font-semibold text-slate-700"><i class="fa-solid fa-users text-[#1e5128]"></i> ONG</span>
+</label>
+<label class="flex items-center gap-3 rounded-lg border border-slate-300 p-4 cursor-pointer hover:border-[#1e5128] has-[:checked]:border-[#1e5128] has-[:checked]:bg-emerald-50/70">
+<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="benefica" required>
+<span class="flex items-center gap-2 text-sm font-semibold text-slate-700"><i class="fa-solid fa-hand-holding-heart text-[#1e5128]"></i> Organización benéfica</span>
+</label>
+</div>
+</fieldset>
 <div class="rounded-lg bg-emerald-50/70 border border-emerald-200/80 p-3.5 text-xs text-emerald-950 flex items-start space-x-2.5">
 <i class="fa-solid fa-circle-info text-emerald-700 mt-0.5 flex-shrink-0 text-sm"></i>
-<span>
-<strong>Aviso de Verificación:</strong> Todas las solicitudes son auditadas según lineamientos del <strong>MIMP</strong> e ImpactoLOCAL antes de habilitar los módulos de recepción benéfica.
-              </span>
+<span><strong>Aviso de verificación:</strong> Todas las solicitudes son auditadas según los lineamientos del <strong>MIMP</strong> e ImpactoLOCAL antes de habilitar sus módulos.</span>
 </div>
-
 <div class="flex justify-end pt-2">
 <button class="inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-bold text-white bg-[#1e5128] hover:bg-[#163c1d] active:scale-[0.98] shadow-md shadow-[#1e5128]/25 transition-all duration-150" type="submit">
-<span>Enviar solicitud</span>
-<i class="fa-solid fa-paper-plane ml-2.5 text-xs"></i>
+<span>Enviar solicitud</span><i class="fa-solid fa-paper-plane ml-2.5 text-xs"></i>
 </button>
 </div>
 </form>
-</div>
-
-<div id="panel-benefica" class="hidden" data-purpose="panel-benefica">
-<form action="#" class="space-y-6" data-purpose="entity-request-form-benefica" method="POST" data-api="/api/solicitudes" data-tipo="benefica">
-
-<div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="username-benefica">
-                Usuario:
-              </label>
-<div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="username-benefica" name="username-benefica" placeholder="Ej. fundacion_manosunidas" required="" type="text"/>
-</div>
-</div>
-
-<div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="email-benefica">
-                Correo:
-              </label>
-<div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="email-benefica" name="email-benefica" placeholder="contacto@fundacionbenefica.org.pe" required="" type="email"/>
-</div>
-</div>
-
-<div>
-<label class="block text-sm font-bold text-slate-800 mb-1.5" for="password-benefica">
-                Contraseña:
-              </label>
-<div class="relative rounded-lg shadow-sm">
-<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password-benefica" name="password-benefica" placeholder="••••••••••••" required="" type="password" minlength="8" autocomplete="new-password"/>
-</div>
-</div>
-
-<div class="rounded-lg bg-emerald-50/70 border border-emerald-200/80 p-3.5 text-xs text-emerald-950 flex items-start space-x-2.5">
-<i class="fa-solid fa-circle-info text-emerald-700 mt-0.5 flex-shrink-0 text-sm"></i>
-<span>
-<strong>Aviso de Verificación:</strong> Todas las solicitudes son auditadas según lineamientos del <strong>MIMP</strong> e ImpactoLOCAL antes de habilitar los módulos de gestión de donaciones y beneficencia.
-              </span>
-</div>
-
-<div class="flex justify-end pt-2">
-<button class="inline-flex items-center justify-center px-8 py-3 rounded-lg text-sm font-bold text-white bg-[#1e5128] hover:bg-[#163c1d] active:scale-[0.98] shadow-md shadow-[#1e5128]/25 transition-all duration-150" type="submit">
-<span>Enviar solicitud</span>
-<i class="fa-solid fa-paper-plane ml-2.5 text-xs"></i>
-</button>
-</div>
-</form>
-</div>
 </div>
 </div>
 </div>
@@ -233,33 +168,6 @@
 </footer>
 
 
-<script data-purpose="entity-tabs-toggle">
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabOng = document.getElementById('tab-btn-ong');
-      const tabBenefica = document.getElementById('tab-btn-benefica');
-      const panelOng = document.getElementById('panel-ong');
-      const panelBenefica = document.getElementById('panel-benefica');
-      const panelLabel = document.getElementById('panel-label');
 
-      const ongActive = "py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] transition-all flex items-center justify-center space-x-2";
-      const ongInactive = "py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 transition-all flex items-center justify-center space-x-2";
-      const beneficaActive = "py-4 px-6 text-center font-bold text-[#1e5128] bg-white border-b-2 border-[#1e5128] border-l border-slate-200 transition-all flex items-center justify-center space-x-2";
-      const beneficaInactive = "py-4 px-6 text-center font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100/60 border-l border-slate-200 transition-all flex items-center justify-center space-x-2";
-
-      function activate(tab) {
-        const isOng = tab === 'ong';
-        tabOng.className = isOng ? ongActive : ongInactive;
-        tabBenefica.className = isOng ? beneficaInactive : beneficaActive;
-        panelOng.classList.toggle('hidden', !isOng);
-        panelBenefica.classList.toggle('hidden', isOng);
-        panelLabel.textContent = isOng ? 'SOLICITUD DE ONG' : 'SOLICITUD DE ORGANIZACIÓN BENÉFICA';
-      }
-
-      if (tabOng && tabBenefica) {
-        tabOng.addEventListener('click', () => activate('ong'));
-        tabBenefica.addEventListener('click', () => activate('benefica'));
-      }
-    });
-  </script>
 <script src="../js/forms.js"></script>
 </body></html>
