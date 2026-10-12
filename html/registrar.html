@@ -44,6 +44,18 @@
                     <label>Contraseña</label>
                     <input type="password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" required>
                 </div>
+                <div class="form-field">
+                    <label for="registro-telefono">Número telefónico</label>
+                    <input id="registro-telefono" type="tel" name="telefono" placeholder="987654321" autocomplete="tel" inputmode="numeric" pattern="[0-9]{9}" maxlength="9" title="Ingresa un número de 9 dígitos" required>
+                </div>
+                <div class="form-field">
+                    <label for="registro-dni">DNI</label>
+                    <input id="registro-dni" type="text" name="dni" placeholder="12345678" autocomplete="off" inputmode="numeric" pattern="[0-9]{8}" minlength="8" maxlength="8" title="Ingresa un DNI de 8 dígitos" required>
+                </div>
+                <div class="form-field">
+                    <label for="registro-ocupacion">Ocupación</label>
+                    <input id="registro-ocupacion" type="text" name="ocupacion" placeholder="A qué te dedicas" maxlength="120" autocomplete="organization-title" required>
+                </div>
                 <button type="submit" class="btn-submit-form">Registrarse</button>
             </form>
             <div class="auth-switch">
