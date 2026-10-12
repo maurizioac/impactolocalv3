@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (res) {
           if (!res.ok) { mostrar(res.j.message || 'No se pudo completar la acción.', false); return; }
           if (res.j.nombre) {
-            try { localStorage.setItem('il_sesion', JSON.stringify({ nombre: res.j.nombre, email: res.j.email || datos.email || '', rol: res.j.rol || 'usuario' })); } catch (e) {}
+            try { localStorage.setItem('il_sesion', JSON.stringify({ nombre: res.j.nombre, email: res.j.email || datos.email || '', rol: res.j.rol || 'usuario', perfil: res.j.perfil || null })); } catch (e) {}
           }
           if (form.dataset.redirect) { window.location.href = form.dataset.redirect; return; }
           form.reset();
