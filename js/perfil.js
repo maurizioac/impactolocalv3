@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('password-form');
   var message = document.getElementById('profile-message');
   var changeButton = document.getElementById('show-password-button');
-  var cancelButton = document.getElementById('cancel-password-button');
+  var dialog = document.getElementById('password-dialog');
+  var closeButton = document.getElementById('cancel-password-button');
+  var cancelButton = document.getElementById('cancel-password-form');
   var profileData = document.getElementById('profile-data');
   var submit = form.querySelector('button[type="submit"]');
 
@@ -39,17 +41,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   changeButton.addEventListener('click', function () {
-    changeButton.hidden = true;
-    form.hidden = false;
     message.hidden = true;
+    dialog.showModal();
   });
 
-  cancelButton.addEventListener('click', function () {
+  function closeDialog() {
     form.reset();
-    form.hidden = true;
-    changeButton.hidden = false;
-    message.hidden = true;
+    dialog.close();
+  }
+
+  closeButton.addEventListener('click', closeDialog);
+  cancelButton.addEventListener('click', closeDialog);
+  dialog.addEventListener('click', function (event) {
+    if (event.target === dialog) closeDialog();
   });
+  dialog.addEventListener('cancel', function () { form.reset(); });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -79,19 +85,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       })
       .then(function (result) {
-        showMessage(result.data.message || (result.ok ? 'Contraseña actualizada.' : 'No se pudo actualizar la contraseña.'), result.ok);
         if (result.ok) {
           form.reset();
-          form.hidden = true;
-          changeButton.hidden = false;
+          dialog.close();
         }
+        showMessage(result.data.message || (result.ok ? 'Contraseña actualizada.' : 'No se pudo actualizar la contraseña.'), result.ok);
       })
       .catch(function () { showMessage('No hay conexión con el servidor. Intenta de nuevo.', false); })
       .then(function () { submit.disabled = false; });
-  });
-
-  document.getElementById('logout-button').addEventListener('click', function () {
-    localStorage.removeItem('il_sesion');
-    window.location.href = 'index.html';
   });
 });
