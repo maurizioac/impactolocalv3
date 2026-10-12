@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         avatar.innerHTML = '<i class="fa-solid fa-user" aria-hidden="true"></i>';
         actions.appendChild(avatar);
       }
-      avatar.href = 'perfil.html';
+      avatar.href = '/html/perfil.html';
       avatar.classList.add('is-authenticated');
       avatar.setAttribute('aria-label', 'Mi perfil');
       avatar.title = 'Mi perfil';
