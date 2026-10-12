@@ -41,7 +41,16 @@
         <div><dt>Ocupación</dt><dd id="profile-occupation"></dd></div>
       </dl>
       <button id="show-password-button" type="button" class="btn-submit-form" hidden>Cambiar contraseña</button>
-      <form id="password-form" class="auth-form" hidden>
+    </section>
+  </main>
+  <dialog id="password-dialog" class="password-dialog" aria-labelledby="password-dialog-title">
+    <div class="password-dialog-content">
+      <div class="password-dialog-heading">
+        <h2 id="password-dialog-title">Cambiar contraseña</h2>
+        <button id="cancel-password-button" type="button" class="password-dialog-close" aria-label="Cerrar">&times;</button>
+      </div>
+      <p>Ingresa tu contraseña actual y elige una nueva de al menos 8 caracteres.</p>
+      <form id="password-form" class="auth-form">
         <div class="form-field">
           <label for="password-current">Contraseña actual</label>
           <input id="password-current" type="password" name="actual" autocomplete="current-password" required>
@@ -55,11 +64,10 @@
           <input id="password-confirm" type="password" name="confirmar" minlength="8" autocomplete="new-password" required>
         </div>
         <button type="submit" class="btn-submit-form">Guardar contraseña</button>
-        <button id="cancel-password-button" type="button" class="profile-logout">Cancelar</button>
+        <button id="cancel-password-form" type="button" class="profile-logout">Cancelar</button>
       </form>
-      <button id="logout-button" type="button" class="profile-logout">Cerrar sesión</button>
-    </section>
-  </main>
+    </div>
+  </dialog>
   <script src="../js/nav.js"></script>
   <script src="../js/perfil.js"></script>
 </body>
