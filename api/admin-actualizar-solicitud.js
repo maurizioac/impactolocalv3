@@ -18,13 +18,17 @@ export default async function handler(req, res) {
   try {
     const rows = await sql`
       WITH solicitud AS (
-        SELECT id, usuario, email, password_hash
+        SELECT id, tipo, usuario, email, password_hash, ocupacion, web, instagram, facebook, tiktok
         FROM solicitudes_registro_org
         WHERE id = ${id} AND estado = 'pendiente'
       ),
       insertada AS (
-        INSERT INTO "ORGANIZACIONES" ("NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA")
-        SELECT s.usuario, s.email, s.password_hash
+        INSERT INTO "ORGANIZACIONES" (
+          "NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA",
+          "OCUPACIÓN", "WEB", "INSTAGRAM", "FACEBOOK", "TIKTOK", "TIPO"
+        )
+        SELECT s.usuario, s.email, s.password_hash, s.ocupacion,
+               s.web, s.instagram, s.facebook, s.tiktok, s.tipo
         FROM solicitud s
         WHERE ${estado} = 'aprobada'
           AND NOT EXISTS (
@@ -47,6 +51,6 @@ export default async function handler(req, res) {
     return res.status(200).json({ ok: true, solicitud: rows[0] });
   } catch (err) {
     console.error('ERROR /api/admin/solicitudes/:id:', err);
-    return res.status(500).json({ ok: false, message: 'No se pudo actualizar la solicitud.' });
+    return res.status(500).json({ ok: false, message: 'No se pudo actualizar la solicitud. Revisa que db/schema.sql esté aplicado en Neon.' });
   }
 }
