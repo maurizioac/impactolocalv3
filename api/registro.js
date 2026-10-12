@@ -27,15 +27,14 @@ export default async function handler(req, res) {
     const [existing] = await sql`
       SELECT "ID" FROM "CLIENTES" WHERE lower("CORREO ELECTRÓNICO") = ${email} LIMIT 1`;
     if (existing) return res.status(409).json({ ok: false, message: 'Ese correo ya está registrado.' });
-    const [cliente] = await sql`
+    await sql`
       INSERT INTO "CLIENTES" ("NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA", "NÚMERO TELEFÓNICO", "DNI", "OCUPACIÓN")
-      VALUES (${nombre}, ${email}, ${hashPassword(password)}, ${telefono}, ${dni}, ${ocupacion})
-      RETURNING "ID"`;
+      VALUES (${nombre}, ${email}, ${hashPassword(password)}, ${telefono}, ${dni}, ${ocupacion})`;
     return res.status(201).json({
       ok: true,
       nombre,
       email,
-      perfil: { id: cliente.ID, nombre, email, telefono, dni, ocupacion }
+      perfil: { nombre, email, ocupacion }
     });
   } catch (err) {
     if (err.code === '23505')
