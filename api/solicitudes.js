@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     await sql`
       INSERT INTO "ORGANIZACIONES" (
         "NOMBRE DE USUARIO", "CORREO ELECTRÓNICO", "CONTRASEÑA", "OCUPACIÓN",
-        "WEB", "INSTAGRAM", "FACEBOOK", "TIKTOK", "TIPO"
+        "WEB", "INSTAGRAM", "FACEBOOK", "TIK TOK", "TIPO"
       ) VALUES (
         ${usuario}, ${email}, ${hashPassword(password)}, ${ocupacion},
         ${web}, ${instagram}, ${facebook}, ${tiktok}, ${tipo}
