@@ -21,15 +21,19 @@ input,select,textarea,button{font-family:inherit;max-width:100%}
 .profile-data div{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid #e2e8df}
 .profile-data dt{color:#64748b;font-weight:600}
 .profile-data dd{margin:0;text-align:right;color:#1e293b;font-weight:600;overflow-wrap:anywhere}
-.password-dialog{width:min(560px,calc(100% - 2rem));max-height:calc(100% - 2rem);padding:0;border:0;border-radius:18px;color:#1e293b;box-shadow:0 24px 70px rgba(15,23,42,.3)}
+.password-dialog{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);margin:0;width:min(500px,calc(100vw - 2rem));max-height:min(90vh,720px);overflow-y:auto;padding:0;border:1px solid #e2e8f0;border-radius:20px;background:#fff;color:#1e293b;box-shadow:0 28px 80px rgba(15,23,42,.32)}
 .password-dialog::backdrop{background:rgba(15,23,42,.58);backdrop-filter:blur(2px)}
-.password-dialog-content{padding:1.5rem}
+.password-dialog-content{padding:2rem}
 .password-dialog-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.password-dialog-heading h2{margin:0;color:#163b23;font-size:1.35rem}
+.password-dialog-heading h2{margin:0;color:#163b23;font-size:1.5rem;font-weight:800}
 .password-dialog-close{width:2.25rem;height:2.25rem;border:0;border-radius:50%;background:#f1f5f9;color:#334155;font-size:1.5rem;line-height:1;cursor:pointer}
-.password-dialog p{color:#64748b;line-height:1.5}
-.password-dialog .form-field{margin-top:1rem}
-.password-dialog .profile-logout{margin-bottom:0}
+.password-dialog-close:hover{background:#e2e8f0}
+.password-dialog p{margin:.5rem 0 1.35rem;color:#64748b;line-height:1.5}
+.password-dialog .auth-form{gap:1rem}
+.password-dialog .form-field{margin:0}
+.password-dialog .form-field input{min-height:48px}
+.password-dialog .btn-submit-form{margin-top:.25rem;min-height:48px}
+.password-dialog .profile-logout{margin:.25rem auto 0}
 form button[disabled]{opacity:.65;cursor:progress}
 
 
@@ -83,6 +87,8 @@ form button[disabled]{opacity:.65;cursor:progress}
   .stats-grid,.solution-cards-grid{grid-template-columns:1fr}
   .section-block{padding-left:0;padding-right:0}
   .auth-card{padding:1.5rem 1.1rem;border-radius:14px}
+  .password-dialog-content{padding:1.25rem}
+  .password-dialog-heading h2{font-size:1.25rem}
   .auth-header-box h2{font-size:1.5rem}
   
   input,select,textarea{font-size:16px!important}
