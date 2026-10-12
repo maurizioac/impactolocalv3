@@ -33,11 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
       showMessage('Cierra sesión e inicia sesión otra vez para cargar los datos de tu perfil.', false);
     } else {
       var perfil = session.perfil;
-      setValue('profile-id', perfil.id);
       setValue('profile-name', perfil.nombre || session.nombre);
       setValue('profile-email', perfil.email || session.email);
-      setValue('profile-phone', perfil.telefono);
-      setValue('profile-dni', perfil.dni);
       setValue('profile-occupation', perfil.ocupacion);
       profileData.hidden = false;
       changeButton.hidden = false;
