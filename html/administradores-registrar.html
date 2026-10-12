@@ -107,16 +107,38 @@
 <input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="password" name="password" placeholder="••••••••" required type="password" minlength="8" autocomplete="new-password"/>
 </div>
 </div>
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="ocupacion">Ocupación:</label>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="ocupacion" name="ocupacion" placeholder="Ej. Apoyo comunitario y educación" maxlength="120" required>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="web">Página web (URL):</label>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="web" name="web" type="url" placeholder="https://organizacion.org.pe" maxlength="500">
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="instagram">Instagram (URL):</label>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="instagram" name="instagram" type="url" placeholder="https://instagram.com/organizacion" maxlength="500">
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="facebook">Facebook (URL):</label>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="facebook" name="facebook" type="url" placeholder="https://facebook.com/organizacion" maxlength="500">
+</div>
+<div>
+<label class="block text-sm font-bold text-slate-800 mb-1.5" for="tiktok">TikTok (URL):</label>
+<input class="block w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 placeholder-slate-400 focus:border-[#1e5128] focus:ring-1 focus:ring-[#1e5128] sm:text-sm font-normal" id="tiktok" name="tiktok" type="url" placeholder="https://tiktok.com/@organizacion" maxlength="500">
+</div>
+</div>
 <fieldset>
 <legend class="block text-sm font-bold text-slate-800 mb-2">¿Qué tipo de organización representas?</legend>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 <label class="flex items-center gap-3 rounded-lg border border-slate-300 p-4 cursor-pointer hover:border-[#1e5128] has-[:checked]:border-[#1e5128] has-[:checked]:bg-emerald-50/70">
-<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="ong" required>
+<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="ONG" required>
 <span class="flex items-center gap-2 text-sm font-semibold text-slate-700"><i class="fa-solid fa-users text-[#1e5128]"></i> ONG</span>
 </label>
 <label class="flex items-center gap-3 rounded-lg border border-slate-300 p-4 cursor-pointer hover:border-[#1e5128] has-[:checked]:border-[#1e5128] has-[:checked]:bg-emerald-50/70">
-<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="benefica" required>
-<span class="flex items-center gap-2 text-sm font-semibold text-slate-700"><i class="fa-solid fa-hand-holding-heart text-[#1e5128]"></i> Organización benéfica</span>
+<input class="text-[#1e5128] focus:ring-[#1e5128]" type="radio" name="tipo" value="VOLUNTARIADO" required>
+<span class="flex items-center gap-2 text-sm font-semibold text-slate-700"><i class="fa-solid fa-hand-holding-heart text-[#1e5128]"></i> Voluntariado</span>
 </label>
 </div>
 </fieldset>
