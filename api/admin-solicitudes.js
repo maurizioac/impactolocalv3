@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (!admin) return;
   try {
     const rows = await sql`
-      SELECT id, tipo, usuario, email, estado, motivo_rechazo, creado_en
+      SELECT id, tipo, usuario, email, ocupacion, web, instagram, facebook, tiktok, estado, motivo_rechazo, creado_en
       FROM solicitudes_registro_org
       ORDER BY CASE WHEN estado = 'pendiente' THEN 0 ELSE 1 END, creado_en DESC`;
     return res.status(200).json({ ok: true, solicitudes: rows });
