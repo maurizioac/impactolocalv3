@@ -12,12 +12,15 @@ export default async function handler(req, res) {
     const [admin] = await sql`
       SELECT "NOMBRE DE USUARIO" AS nombre, "CORREO ELECTRÓNICO" AS email,
              "CONTRASEÑA" AS password_hash
-      FROM "ADMINS" WHERE lower("NOMBRE DE USUARIO") = lower(${username}) LIMIT 1`;
+      FROM "ADMINS"
+      WHERE lower(translate("NOMBRE DE USUARIO", 'áéíóúüñÁÉÍÓÚÜÑ', 'aeiouunAEIOUUN')) =
+            lower(translate(${username}, 'áéíóúüñÁÉÍÓÚÜÑ', 'aeiouunAEIOUUN'))
+      LIMIT 1`;
     const stored = String(admin?.password_hash || '');
     if (!admin || !(verifyPassword(password, stored) || stored === password))
       return res.status(401).json({ ok: false, message: 'Usuario o contraseña incorrectos.' });
     if (!stored.includes(':')) {
-      await sql`UPDATE "ADMINS" SET "CONTRASEÑA" = ${hashPassword(password)} WHERE lower("NOMBRE DE USUARIO") = lower(${username}) AND "CONTRASEÑA" = ${stored}`;
+      await sql`UPDATE "ADMINS" SET "CONTRASEÑA" = ${hashPassword(password)} WHERE "NOMBRE DE USUARIO" = ${admin.nombre} AND "CONTRASEÑA" = ${stored}`;
     }
     setAdminSession(res, String(admin.email || '').toLowerCase());
     return res.status(200).json({ ok: true, nombre: admin.nombre || username, email: admin.email, rol: 'superadmin' });
