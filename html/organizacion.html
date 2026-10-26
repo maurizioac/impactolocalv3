@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conoce la organización y sus iniciativas en ImpactoLOCAL.">
+  <title>Organización - ImpactoLOCAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="il-body">
+  <header class="il-header"><div class="il-header-inner">
+    <a href="index.html" class="il-logo"><img src="../imagenes/logo-impactolocal.svg" class="brand-logo" alt="ImpactoLOCAL"><span class="il-logo-text"><span class="il-logo-title">ImpactoLOCAL</span><span class="il-logo-sub">PERÚ · ACCIÓN &amp; CONFIANZA</span></span></a>
+    <nav class="il-nav"><a href="index.html" class="il-nav-link"><i class="fa-solid fa-house"></i> Principal</a><a href="descubre.html" class="il-nav-link is-active"><i class="fa-solid fa-magnifying-glass"></i> Descubre</a><a href="solicitudes.html" class="il-nav-link">Solicitudes</a></nav>
+    <div class="il-header-actions"><a href="iniciar-sesion.html" class="il-link-muted">Iniciar Sesión</a><a href="registrar.html" class="il-btn-outline">Regístrate</a></div>
+    <button class="il-nav-toggle" id="ilNavToggle" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+  </div></header>
+  <main class="org-detail-container" id="organizationDetail" aria-live="polite">
+    <div class="breadcrumb-row"><span><a href="descubre.html">Descubre</a> › Organizaciones › <strong id="detailBreadcrumb">Cargando…</strong></span><a href="descubre.html" class="back-link">← Volver al directorio</a></div>
+    <p id="detailStatus" role="status">Cargando información…</p>
+    <div id="detailContent" hidden>
+      <section class="org-hero-box" id="detailHero"><span class="verified-badge-top"><i class="fa-solid fa-hand-holding-heart"></i> Organización / voluntariado</span><h1 class="org-main-title" id="detailTitle"></h1><p class="org-subtitle" id="detailSubtitle"></p></section>
+      <section class="org-section-box detail-profile-card">
+        <div class="section-tag">QUIÉNES SOMOS</div>
+        <div class="detail-intro-copy"><h2 id="detailUsername"></h2><p class="detail-handle" id="detailHandle"></p><p id="detailDescription"></p></div>
+        <div class="detail-work-copy"><div class="section-tag">NUESTRA LABOR</div><h2 id="detailSubtitle1"></h2><p id="detailText1"></p><h2 id="detailSubtitle2" class="detail-subtitle-spaced"></h2><p id="detailText2"></p></div>
+        <figure class="org-image-content detail-centered-image"><img id="detailImage" src="../imagenes/personas.png" alt="Imagen principal de la organización"><figcaption>Imagen principal de la iniciativa</figcaption></figure>
+      </section>
+      <section class="org-section-box contact-box"><h2>Conoce más y participa</h2><p class="contact-subtitle">Visita sus canales oficiales para conocer actividades, convocatorias y formas de colaborar.</p><div class="detail-social-links" id="detailSocialLinks"></div></section>
+    </div>
+  </main>
+  <footer class="il-footer"><div class="il-footer-inner-center"><p>ImpactoLOCAL © 2026 · Conectamos personas con iniciativas de impacto.</p></div></footer>
+  <script src="../js/nav.js"></script><script src="../js/organizacion.js"></script>
+</body>
+</html>

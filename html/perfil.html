@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImpactoLOCAL - Mi perfil</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-body profile-page">
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="logo-area" aria-label="ImpactoLOCAL, página principal">
+        <img src="../imagenes/logo-impactolocal.svg" class="brand-logo" alt="ImpactoLOCAL — Perú: Acción y Confianza">
+        <i class="fa-solid fa-sun logo-icon"></i>
+        <div class="logo-text">
+          <span class="logo-title">ImpactoLOCAL</span>
+          <span class="logo-subtitle">PERÚ: ACCIÓN &amp; CONFIANZA</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="index.html" class="admin-login-back-link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver</a>
+        <div class="profile-menu-wrap">
+          <button id="profile-menu-toggle" type="button" class="profile-menu-toggle" aria-label="Abrir opciones de cuenta" aria-expanded="false" aria-controls="profile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+          <section id="profile-menu" class="profile-header-actions" aria-label="Opciones de la cuenta" hidden>
+            <button id="show-password-button" type="button" class="profile-header-action" hidden><i class="fa-solid fa-key" aria-hidden="true"></i> Cambiar contraseña</button>
+            <button id="logout-button" type="button" class="profile-header-action profile-header-logout" hidden><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Cerrar sesión</button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-wrapper">
+    <section class="auth-card profile-card">
+      <div class="auth-header-box">
+        <h1>Mi perfil</h1>
+        <p>Administra tu información personal y la seguridad de tu cuenta.</p>
+      </div>
+      <p id="profile-message" class="il-form-msg" role="alert" hidden></p>
+      <dl id="profile-data" class="profile-data" hidden>
+        <div><dt>Nombre completo</dt><dd id="profile-name"></dd></div>
+        <div><dt>Correo electrónico</dt><dd id="profile-email"></dd></div>
+        <div><dt>Ocupación</dt><dd id="profile-occupation"></dd></div>
+      </dl>
+      <aside class="profile-security-note"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Mantén tu cuenta segura usando una contraseña que solo tú conozcas.</aside>
+    </section>
+  </main>
+  <dialog id="password-dialog" class="password-dialog" aria-labelledby="password-dialog-title">
+    <div class="password-dialog-content">
+      <div class="password-dialog-heading">
+        <h2 id="password-dialog-title">Cambiar contraseña</h2>
+        <button id="cancel-password-button" type="button" class="password-dialog-close" aria-label="Cerrar">&times;</button>
+      </div>
+      <p>Ingresa tu contraseña actual y elige una nueva de al menos 8 caracteres.</p>
+      <form id="password-form" class="auth-form">
+        <div class="form-field">
+          <label for="password-current">Contraseña actual</label>
+          <input id="password-current" type="password" name="actual" autocomplete="current-password" required>
+        </div>
+        <div class="form-field">
+          <label for="password-new">Nueva contraseña</label>
+          <input id="password-new" type="password" name="nueva" minlength="8" autocomplete="new-password" required>
+        </div>
+        <div class="form-field">
+          <label for="password-confirm">Repite la nueva contraseña</label>
+          <input id="password-confirm" type="password" name="confirmar" minlength="8" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="btn-submit-form">Guardar contraseña</button>
+        <button id="cancel-password-form" type="button" class="profile-logout">Cancelar</button>
+      </form>
+    </div>
+  </dialog>
+  <script src="../js/nav.js"></script>
+  <script src="../js/perfil.js"></script>
+</body>
+</html>
