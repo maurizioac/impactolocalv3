@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9f5">
+  <title>Directorio y auditoría | Administradores ImpactoLOCAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-directory-body">
+  <header class="admin-directory-header">
+    <a href="administradores.html" class="admin-directory-brand"><img src="../imagenes/logo-impactolocal.svg" alt="ImpactoLOCAL"><span><strong>ImpactoLOCAL <i>— Administradores</i></strong><small>PERÚ · ACCIÓN &amp; CONFIANZA</small></span></a>
+    <div class="admin-identity"><div><strong id="adminAccountName">Super Admin Sistema</strong><span><i class="fa-solid fa-circle"></i> Rol Moderación Nacional</span></div><span class="admin-avatar"><i class="fa-regular fa-user"></i><i class="admin-online"></i></span></div>
+  </header>
+  <nav class="admin-directory-nav" aria-label="Navegación de administración">
+    <button class="is-active" type="button" data-admin-view="discover"><i class="fa-solid fa-magnifying-glass"></i> Descubre</button>
+    <button type="button" data-admin-view="latest"><i class="fa-regular fa-clock"></i> Últimas Solicitudes <span class="admin-nav-count" id="latestRequestCount">…</span></button>
+    <button class="admin-logout" id="logout" type="button">Cerrar sesión</button>
+  </nav>
+
+  <main class="admin-directory-main">
+    <section id="discoverView" data-admin-panel="discover">
+      <header class="directory-hero"><h1>Directorio &amp; Auditoría de Organizaciones</h1><p>Busque y supervise iniciativas comunitarias, solicitudes de apoyo y expedientes de validación.</p><div class="directory-search"><i class="fa-solid fa-magnifying-glass"></i><input id="organizationSearch" type="search" aria-label="Buscar organización" placeholder="¿Qué organización estamos buscando?" autocomplete="off"><button type="button" id="clearSearch" aria-label="Limpiar búsqueda"><i class="fa-solid fa-circle-plus"></i></button></div><div class="quick-filters"><span>FILTROS RÁPIDOS:</span><button type="button" data-quick-filter="foro"><i class="fa-regular fa-comments"></i> Foros</button><button type="button" data-quick-filter="ayuda"><i class="fa-solid fa-hand-holding-heart"></i> Solicitudes de ayuda</button><button type="button" data-quick-filter="recent"><i class="fa-regular fa-calendar-check"></i> Última modificación</button></div></header>
+      <section class="directory-results" aria-label="Registros de organizaciones">
+        <div class="directory-toolbar"><div class="directory-status-filters"><button class="is-active" data-status-filter="all" type="button">Todos los registros <b id="countAll">0</b></button><button data-status-filter="verified" type="button">Verificadas <b id="countVerified">0</b></button><button data-status-filter="pending" type="button">Pendientes <b id="countPending">0</b></button><button data-status-filter="observed" type="button">Observadas <b id="countObserved">0</b></button></div><label class="directory-sort">Ordenar por: <select id="organizationSort"><option value="name">Nombre de organización</option><option value="status">Estado</option></select></label></div>
+        <p class="directory-feedback" id="directoryFeedback" role="status" aria-live="polite">Cargando organizaciones…</p>
+        <div class="organization-grid" id="organizationGrid" aria-live="polite"></div>
+        <aside class="moderation-tip"><span><i class="fa-solid fa-info"></i></span><p><strong>Tip de moderación:</strong> Puedes buscar una organización o filtrar por verificadas, pendientes y observadas.</p><a href="administradores.html">Guía de Auditoría</a></aside>
+      </section>
+    </section>
+
+    <section id="latestView" data-admin-panel="latest" hidden>
+      <header class="moderation-heading"><div><h1>Bandeja de Moderación Comunitaria</h1><p>Revisa las solicitudes institucionales remitidas por las organizaciones registradas.</p></div><span class="priority-counter" id="priorityCounter">Pendientes prioritarias: 0 de 0</span></header>
+      <p class="directory-feedback" id="requestsFeedback" role="status" aria-live="polite">Cargando solicitudes…</p>
+      <div id="applicationList" class="moderation-list" aria-live="polite"></div>
+      <button type="button" class="load-more-applications" id="loadMoreApplications" hidden>Cargar más solicitudes</button>
+    </section>
+  </main>
+  <footer class="admin-directory-footer"><p><strong>ImpactoLOCAL © 2026</strong> · USMP 2026 - II · Marco de validación institucional con referencias oficiales (MIMP y PUCP)</p><small>Panel administrativo protegido. Las acciones de aprobación, rechazo y consulta se registran en el sistema.</small></footer>
+  <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>
