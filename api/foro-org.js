@@ -9,12 +9,12 @@ export default async function handler(req, res) {
         "NOMBRE DE USUARIO" AS nombre_usuario,
         "TÍTULO" AS titulo,
         "DESCRIPCIÓN" AS descripcion,
-        "IMAGEN PARCIAL" AS imagen_parcial,
+        "IMAGEN PRINCIPAL" AS imagen_parcial,
         "WEB" AS web,
         "INSTAGRAM" AS instagram,
         "FACEBOOK" AS facebook,
         "TIK TOK" AS tik_tok
-      FROM foro_org
+      FROM "FORO_ORG"
       ORDER BY "NOMBRE DE USUARIO", "TÍTULO"
     `;
 
