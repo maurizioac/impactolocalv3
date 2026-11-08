@@ -14,6 +14,7 @@ import adminSetup from './api/admin-setup.js';
 import adminLogin from './api/admin-login.js';
 import adminLogout from './api/admin-logout.js';
 import adminSolicitudes from './api/admin-solicitudes.js';
+import adminSolicitudesAyuda from './api/admin-solicitudes-ayuda.js';
 import adminOrganizaciones from './api/admin-organizaciones.js';
 import adminActualizarSolicitud from './api/admin-actualizar-solicitud.js';
 import organizacionLogout from './api/organizacion-logout.js';
@@ -36,6 +37,7 @@ app.all('/api/admin/setup', adminSetup);
 app.all('/api/admin/login', adminLogin);
 app.all('/api/admin/logout', adminLogout);
 app.all('/api/admin/solicitudes', adminSolicitudes);
+app.all('/api/admin/solicitudes-ayuda', adminSolicitudesAyuda);
 app.all('/api/admin/organizaciones', adminOrganizaciones);
 app.all('/api/admin/solicitudes/:id', adminActualizarSolicitud);
 
